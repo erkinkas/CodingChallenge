@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaymentsenseCodingChallengeApiService } from './services';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HealthCheckComponent } from './components/health-check/health-check.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HealthCheckComponent
   ],
   imports: [
     BrowserModule,
