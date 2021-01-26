@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Paymentsense.Coding.Challenge.Domain\Paymentsense.Coding.Challenge.Domain.csproj" />
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Infrastructure.RestCountries\Paymentsense.Coding.Challenge.Infrastructure.RestCountries.csproj" />
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Infrastructure.Services\Paymentsense.Coding.Challenge.Infrastructure.Services.csproj" />
     <ProjectReference Include="..\Paymentsense.Coding.Challenge.Services\Paymentsense.Coding.Challenge.Services.csproj" />
   </ItemGroup>
 

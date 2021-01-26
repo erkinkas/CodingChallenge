@@ -30,6 +30,8 @@ namespace Paymentsense.Coding.Challenge.Api
                 });
             });
 
+            RegisterDependencies(services);
+
             services.AddSwaggerGen();
         }
 
@@ -62,6 +64,12 @@ namespace Paymentsense.Coding.Challenge.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paymentsense CodingChallenge API V1");
                 c.RoutePrefix = string.Empty; // TODO: remove before pushing code to production
             });
+        }
+
+        private static void RegisterDependencies(IServiceCollection services)
+        {
+            Infrastructure.Services.Startup.RegisterDependencies(services);
+            Infrastructure.RestCountries.Startup.RegisterDependencies(services);
         }
     }
 }

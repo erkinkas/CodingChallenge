@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Paymentsense.Coding.Challenge.Services.Pagination
 {
-    public class QueryResults<T>
+    public class PageResults<T>
     {
         public List<T> Items { get; set; } = new List<T>();
         public int PageIndex { get; set; } = 1;

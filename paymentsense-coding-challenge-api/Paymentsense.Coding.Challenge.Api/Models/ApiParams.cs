@@ -2,7 +2,6 @@ namespace Paymentsense.Coding.Challenge.Api.Models
 {
     public class ApiParams
     {
-        public string Sort { get; set; }
         private int? _pageIndex { get; set; }
         private int? _pageLimit { get; set; }
 

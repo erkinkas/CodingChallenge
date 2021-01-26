@@ -8,6 +8,6 @@ namespace Paymentsense.Coding.Challenge.Services
 {
     public interface ICountryListService
     {
-        Task<QueryResults<Country>> Get(QueryParams queryParams, CancellationToken cancellationToken);
+        Task<PageResults<Country>> Get(PageParams pageParams, CancellationToken cancellationToken);
     }
 }

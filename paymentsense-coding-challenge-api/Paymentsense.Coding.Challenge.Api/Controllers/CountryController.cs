@@ -12,7 +12,7 @@ using Paymentsense.Coding.Challenge.Services.Pagination;
 namespace Paymentsense.Coding.Challenge.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("country")]
     public class CountryController: ControllerBase
     {
         private readonly ILogger<CountryController> _logger;
@@ -29,14 +29,13 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
             _detailsService = detailsService;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> List([FromQuery] ApiParams apiParams, CancellationToken cancellationToken)
         {
-            var results = await _listService.Get(new QueryParams
+            var results = await _listService.Get(new PageParams
             {
                 PageIndex = apiParams.PageIndex,
                 PageSize = apiParams.PageLimit,
-//                Sorts = apiParams.Sort // TODO: parse by split(',')
             }, cancellationToken);
 
             return Ok(new VmPage<VmCountryList>
@@ -48,7 +47,7 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpGet("{code}")]
         public async Task<IActionResult> Details(string code, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(code))

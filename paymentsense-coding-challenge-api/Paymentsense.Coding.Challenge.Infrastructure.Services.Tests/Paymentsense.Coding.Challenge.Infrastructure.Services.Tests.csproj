@@ -2,10 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-
-    <IsPackable>false</IsPackable>
-
-    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Api\Paymentsense.Coding.Challenge.Api.csproj" />
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Infrastructure.Services\Paymentsense.Coding.Challenge.Infrastructure.Services.csproj" />
     <ProjectReference Include="..\Tests.Core\Tests.Core.csproj" />
   </ItemGroup>
 

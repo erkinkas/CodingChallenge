@@ -24,7 +24,7 @@ namespace Paymentsense.Coding.Challenge.Api.Models.Country
             };
         }
 
-        public static List<VmCountryList> Build(QueryResults<Domain.Country> entities)
+        public static List<VmCountryList> Build(PageResults<Domain.Country> entities)
         {
             return entities?.Items?.Where(x => x != null).Select(Build).ToList();
         }
