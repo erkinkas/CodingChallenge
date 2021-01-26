@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>Paymentsense.Coding.Challenge.Infrastructure.RestCountries</RootNamespace>
+    <AssemblyName>Paymentsense.Coding.Challenge.Infrastructure.RestCountries</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Domain\Paymentsense.Coding.Challenge.Domain.csproj" />
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Repository\Paymentsense.Coding.Challenge.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

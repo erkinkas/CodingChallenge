@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Services\Paymentsense.Coding.Challenge.Services.csproj" />
+  </ItemGroup>
+
+</Project>

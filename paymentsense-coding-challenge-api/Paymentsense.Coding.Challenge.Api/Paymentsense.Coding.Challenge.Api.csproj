@@ -16,4 +16,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Domain\Paymentsense.Coding.Challenge.Domain.csproj" />
+    <ProjectReference Include="..\Paymentsense.Coding.Challenge.Services\Paymentsense.Coding.Challenge.Services.csproj" />
+  </ItemGroup>
+
 </Project>
