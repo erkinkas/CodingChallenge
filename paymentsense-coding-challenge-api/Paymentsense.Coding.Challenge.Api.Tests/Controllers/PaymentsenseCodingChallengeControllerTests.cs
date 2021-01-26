@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,7 +8,7 @@ using Moq;
 
 using Paymentsense.Coding.Challenge.Api.Controllers;
 using Paymentsense.Coding.Challenge.Api.Models;
-using Paymentsense.Coding.Challenge.Domain;
+using Paymentsense.Coding.Challenge.Api.Models.Country;
 using Paymentsense.Coding.Challenge.Services;
 
 using Xunit;
@@ -34,8 +33,8 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
 
-            var returnValue = Assert.IsType<IEnumerable<Country>>(okResult.Value);
-            var idea = returnValue.FirstOrDefault();
+            var returnValue = Assert.IsType<VmPage<VmCountryList>>(okResult.Value);
+            var idea = returnValue.Items.FirstOrDefault();
             Assert.Equal("One", idea.Name);
         }
     }
