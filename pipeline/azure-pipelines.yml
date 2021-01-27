@@ -13,15 +13,6 @@ stages:
   - stage: "Build"
     displayName: "Build and Test"
     jobs:
-      - job: BuildFrontend
-        displayName: "Build And Test Frontend"
-        pool:
-          vmImage: "ubuntu-latest"
-        steps:
-          - template: "jobs/build-frontend.yml"
-            parameters:
-              workingDirectory: paymentsense-coding-challenge-website
-
       - job: BuildBackend
         displayName: "Build and Test Backend"
         pool:
@@ -32,3 +23,11 @@ stages:
               workingDirectory: paymentsense-coding-challenge-api
               buildPlatform: "Any CPU"
               buildConfiguration: "Release"
+      - job: BuildFrontend
+        displayName: "Build And Test Frontend"
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+          - template: "jobs/build-frontend.yml"
+            parameters:
+              workingDirectory: paymentsense-coding-challenge-website
