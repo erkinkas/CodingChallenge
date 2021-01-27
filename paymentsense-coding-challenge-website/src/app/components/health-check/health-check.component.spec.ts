@@ -1,11 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { Observable, BehaviorSubject } from 'rxjs';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 
 import { ApiHealthCheckService } from '../../services';
-import { MockPaymentsenseCodingChallengeApiService } from '../../testing/mock-paymentsense-coding-challenge-api.service';
 
 import { HealthCheckComponent } from './health-check.component';
+
+class MockPaymentsenseCodingChallengeApiService {
+  isActiveSource = new BehaviorSubject<boolean>(null);
+  isActive$: Observable<boolean> = this.isActiveSource.asObservable();
+}
 
 describe('HealthCheckComponent', () => {
   let component: HealthCheckComponent;
@@ -36,14 +43,18 @@ describe('HealthCheckComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'Paymentsense Coding Challenge'`, () => {
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Paymentsense Coding Challenge!');
-  });
+  [
+    { apiHealth: true, expectedIcon: faThumbsUp, expectedIconColour: 'green' },
+    { apiHealth: false, expectedIcon: faThumbsDown, expectedIconColour: 'red' }
+  ].forEach((dataSet) => {
+    it('should have expected icon and icon colour as "' + dataSet.expectedIconColour + '"', () => {
+      const apiHealthCheckService = TestBed.get(ApiHealthCheckService) as ApiHealthCheckService;
+      apiHealthCheckService.isActive$ = new BehaviorSubject<boolean>(dataSet.apiHealth).asObservable();
 
-  it('should render title in a h1 tag', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Paymentsense Coding Challenge!');
+      component.ngOnInit();
+
+      expect(component.apiActiveIcon).toBe(dataSet.expectedIcon);
+      expect(component.apiActiveIconColour).toBe(dataSet.expectedIconColour);
+    });
   });
 });

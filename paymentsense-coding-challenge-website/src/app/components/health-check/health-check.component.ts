@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 
@@ -12,37 +11,35 @@ import { ApiHealthCheckService } from '../../services';
   styleUrls: ['./health-check.component.scss']
 })
 export class HealthCheckComponent implements OnInit, OnDestroy {
-  public faThumbsUp = faThumbsUp;
-  public faThumbsDown = faThumbsDown;
-  public title = 'Paymentsense Coding Challenge!';
-  public paymentsenseCodingChallengeApiIsActive = false;
-  public paymentsenseCodingChallengeApiActiveIcon = this.faThumbsDown;
-  public paymentsenseCodingChallengeApiActiveIconColour = 'red';
+  public apiActiveIcon;
+  public apiActiveIconColour;
 
   private subscriptions: Array<Subscription> = [];
 
-  constructor(private apiHealthCheckService: ApiHealthCheckService) { }
+  constructor(private apiHealthCheckService: ApiHealthCheckService) {
+    this.initApiActiveIcon(false);
+  }
 
   ngOnInit() {
     this.subscriptions.push(
-      this.apiHealthCheckService.getHealth()
-        .pipe(take(1))
+      this.apiHealthCheckService.isActive$
         .subscribe(
-          apiHealth => {
-            this.paymentsenseCodingChallengeApiIsActive = apiHealth === 'Healthy';
-            this.paymentsenseCodingChallengeApiActiveIcon = this.paymentsenseCodingChallengeApiIsActive
-              ? this.faThumbsUp
-              : this.faThumbsUp;
-            this.paymentsenseCodingChallengeApiActiveIconColour = this.paymentsenseCodingChallengeApiIsActive
-              ? 'green'
-              : 'red';
+          isActive => {
+            this.initApiActiveIcon(isActive);
           },
           _ => {
-            this.paymentsenseCodingChallengeApiIsActive = false;
-            this.paymentsenseCodingChallengeApiActiveIcon = this.faThumbsDown;
-            this.paymentsenseCodingChallengeApiActiveIconColour = 'red';
+            this.initApiActiveIcon(false);
           })
     );
+  }
+
+  private initApiActiveIcon(isActive: boolean) {
+    this.apiActiveIcon = isActive
+      ? faThumbsUp
+      : faThumbsDown;
+    this.apiActiveIconColour = isActive
+      ? 'green'
+      : 'red';
   }
 
   ngOnDestroy() {
