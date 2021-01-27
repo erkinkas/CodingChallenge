@@ -11,6 +11,6 @@ export class ApiHealthCheckService {
   constructor(private httpClient: HttpClient) { }
 
   public getHealth(): Observable<string> {
-    return this.httpClient.get(`${environment.endpoint}/health`, { responseType: 'text' });
+    return this.httpClient.get(`${environment.apiEndpoint}/health`, { responseType: 'text' });
   }
 }
