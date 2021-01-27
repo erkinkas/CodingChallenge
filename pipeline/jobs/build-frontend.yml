@@ -10,10 +10,10 @@ steps:
   - script: |
       npm install -g @angular/cli@8.2
       npm install
-    workingDirectory: $(workingDirectory)
+    workingDirectory: $(parameters.workingDirectory)
     displayName: "Install angular and restore packages"
 
   - script: |
       npm run test-headless
-    workingDirectory: $(workingDirectory)
+    workingDirectory: $(parameters.workingDirectory)
     displayName: "Run tests"
