@@ -11,13 +11,13 @@ stages:
     displayName: "Build and Test"
     jobs:
       - job:
-        displayName: 'Build and Run Tests'
+        displayName: 'Build and Test Frontend'
         pool:
           vmImage: 'ubuntu-latest'
         steps:
           - template: 'jobs/build-frontend.yml'
       - job:
-        displayName: 'Build and Run Tests'
+        displayName: 'Build and Test Backend'
         pool:
           vmImage: 'ubuntu-latest'
         steps:

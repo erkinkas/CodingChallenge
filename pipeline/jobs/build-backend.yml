@@ -2,8 +2,10 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  - name: workingDirectory
-    value: paymentsense-coding-challenge-api
+  workingDirectory: paymentsense-coding-challenge-api
+  solution: "paymentsense-coding-challenge-api/**/*.sln"
+  buildPlatform: "Any CPU"
+  buildConfiguration: "Release"
 
 steps:
   - task: DotNetCoreCLI@2
@@ -16,5 +18,5 @@ steps:
     inputs:
       command: build
       workingDirectory: $(workingDirectory)
-      arguments: '-c $(Build.BuildConfiguration) -p:Version=$(Build.BuildNumber)'
+      arguments: "-c $(buildConfiguration) -p:Version=$(Build.BuildNumber)"
     displayName: "Build Projects"
