@@ -36,11 +36,11 @@ steps:
       projects: |
         **/*.csproj
       workingDirectory: ${{ parameters.workingDirectory }}
-      arguments: "-c ${{ parameters.buildConfiguration }} -o ${{ parameters.workingDirectory }}/publish"
+      arguments: "-c ${{ parameters.buildConfiguration }} -o $(Build.ArtifactStagingDirectory)/${{ parameters.workingDirectory }}/_publish"
       publishWebProjects: false
       zipAfterPublish: false
     displayName: "dotnet publish"
 
-  - publish: ${{ parameters.workingDirectory }}/publish
+  - publish: $(Build.ArtifactStagingDirectory)/${{ parameters.workingDirectory }}/_publish
     artifact: $(artifactName)
     displayName: "Publish Backend Artifacts"
