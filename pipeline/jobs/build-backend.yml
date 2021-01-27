@@ -23,4 +23,19 @@ steps:
         **/*Tests.csproj
       workingDirectory: $(workingDirectory)
       arguments: "-c $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
-    displayName: "Run Test"
+    displayName: "Run Tests"
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'publish'
+      projects: |
+        **/*.csproj
+      workingDirectory: $(workingDirectory)
+      arguments: '-c $(buildConfiguration) -o $(workingDirectory)/publish'
+      publishWebProjects: false
+      zipAfterPublish: false
+    displayName: "dotnet publish"
+
+  - publish: $(workingDirectory)/publish
+    artifact: $(artifactName)
+    displayName: 'Publish Backend Artifacts'

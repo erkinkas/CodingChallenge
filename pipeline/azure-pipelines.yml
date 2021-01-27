@@ -7,7 +7,7 @@ trigger:
   - master
 
 variables:
-  workingDirectory: paymentsense-coding-challenge-website
+  artifactName: PaymentsenseCodingChallenge
 
 stages:
   - stage: "Build"
