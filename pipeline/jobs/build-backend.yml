@@ -38,7 +38,7 @@ steps:
       workingDirectory: ${{ parameters.workingDirectory }}
       arguments: "-c ${{ parameters.buildConfiguration }} -o $(Build.ArtifactStagingDirectory)/${{ parameters.workingDirectory }}/_publish"
       publishWebProjects: false
-      zipAfterPublish: false
+      zipAfterPublish: true
     displayName: "dotnet publish"
 
   - publish: $(Build.ArtifactStagingDirectory)/${{ parameters.workingDirectory }}/_publish
