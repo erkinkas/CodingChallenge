@@ -9,7 +9,7 @@ steps:
       command: restore
       projects: |
         **/*.csproj
-      workingDirectory: $(parameters.workingDirectory)
+      workingDirectory: ${{ parameters.workingDirectory }}
     displayName: "Restore Dependencies"
 
   - task: DotNetCoreCLI@2
@@ -17,8 +17,8 @@ steps:
       command: build
       projects: |
         **/*.csproj
-      workingDirectory: $(parameters.workingDirectory)
-      arguments: "-c $(parameters.buildConfiguration)"
+      workingDirectory: ${{ parameters.workingDirectory }}
+      arguments: "-c ${{ parameters.buildConfiguration }}"
     displayName: "Build Projects"
 
   - task: DotNetCoreCLI@2
@@ -26,8 +26,8 @@ steps:
       command: test
       projects: |
         **/*Tests.csproj
-      workingDirectory: $(parameters.workingDirectory)
-      arguments: "-c $(parameters.buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
+      workingDirectory: ${{ parameters.workingDirectory }}
+      arguments: "-c ${{ parameters.buildConfiguration }} /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
     displayName: "Run Tests"
 
   - task: DotNetCoreCLI@2
@@ -35,12 +35,12 @@ steps:
       command: "publish"
       projects: |
         **/*.csproj
-      workingDirectory: $(parameters.workingDirectory)
-      arguments: "-c $(parameters.buildConfiguration) -o $(parameters.workingDirectory)/publish"
+      workingDirectory: ${{ parameters.workingDirectory }}
+      arguments: "-c ${{ parameters.buildConfiguration }} -o ${{ parameters.workingDirectory }}/publish"
       publishWebProjects: false
       zipAfterPublish: false
     displayName: "dotnet publish"
 
-  - publish: $(parameters.workingDirectory)/publish
+  - publish: ${{ parameters.workingDirectory }}/publish
     artifact: $(artifactName)
     displayName: "Publish Backend Artifacts"
