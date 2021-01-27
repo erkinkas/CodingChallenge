@@ -1,3 +1,8 @@
+parameters:
+  - workingDirectory: ""
+    buildPlatform: "Any CPU"
+    buildConfiguration: "Release"
+
 steps:
   - task: DotNetCoreCLI@2
     inputs:
@@ -27,15 +32,15 @@ steps:
 
   - task: DotNetCoreCLI@2
     inputs:
-      command: 'publish'
+      command: "publish"
       projects: |
         **/*.csproj
       workingDirectory: $(workingDirectory)
-      arguments: '-c $(buildConfiguration) -o $(workingDirectory)/publish'
+      arguments: "-c $(buildConfiguration) -o $(workingDirectory)/publish"
       publishWebProjects: false
       zipAfterPublish: false
     displayName: "dotnet publish"
 
   - publish: $(workingDirectory)/publish
     artifact: $(artifactName)
-    displayName: 'Publish Backend Artifacts'
+    displayName: "Publish Backend Artifacts"
