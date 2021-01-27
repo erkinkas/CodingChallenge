@@ -11,6 +11,6 @@ steps:
     displayName: "Install angular and restore packages"
 
   - script: |
-      npm run test
+      npm run test-headless
     workingDirectory: $(workingDirectory)
     displayName: "Run tests"
