@@ -29,6 +29,10 @@ namespace Paymentsense.Coding.Challenge.Api
                         .AllowAnyHeader();
                 });
             });
+
+            RegisterDependencies(services);
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +56,20 @@ namespace Paymentsense.Coding.Challenge.Api
                 endpoints.MapControllers();
                 endpoints.MapHealthChecks("/health");
             });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paymentsense CodingChallenge API V1");
+                c.RoutePrefix = string.Empty; // TODO: remove before pushing code to production
+            });
+        }
+
+        private static void RegisterDependencies(IServiceCollection services)
+        {
+            Infrastructure.Services.Startup.RegisterDependencies(services);
+            Infrastructure.RestCountries.Startup.RegisterDependencies(services);
         }
     }
 }
