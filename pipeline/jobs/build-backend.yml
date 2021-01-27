@@ -30,6 +30,16 @@ steps:
       arguments: "-c ${{ parameters.buildConfiguration }} /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
     displayName: "Run Tests"
 
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: "cobertura"
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/${{ parameters.workingDirectory }}/**/coverage.cobertura.xml
+      pathToSources: $(System.DefaultWorkingDirectory)/${{ parameters.workingDirectory }}/
+      #reportDirectory: # Optional
+      #additionalCodeCoverageFiles: # Optional
+      failIfCoverageEmpty: false
+    displayName: "Publish Tests coverage result"
+
   - task: DotNetCoreCLI@2
     inputs:
       command: "publish"
