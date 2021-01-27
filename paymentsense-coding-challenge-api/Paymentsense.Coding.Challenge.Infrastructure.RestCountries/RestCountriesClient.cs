@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,43 +13,41 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries
 {
     public class RestCountriesClient: ICountryRepository
     {
+        private const string HttpClientName = "RestCountries";
+
+        private static IHttpClientFactory _httpClientFactory;
+
+        public RestCountriesClient(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
         public async Task<IEnumerable<Country>> GetAllAsync(CancellationToken cancellationToken)
         {
-            // TODO: refactor by implementing design pattern
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(new Uri("https://restcountries.eu/rest/v2/all"), cancellationToken);
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var responseContent = await response.Content.ReadAsStringAsync();
-
-                var countries = JsonConvert.DeserializeObject<IEnumerable<Country>>(responseContent);
-
-                return countries;
-            }
-
-            // Try catch?
-            // throw some exception?
-            return null;
+            return await GetAsync<IEnumerable<Country>>(RestCountriesConstants.AllUri, cancellationToken);
         }
 
         public async Task<Country> SearchByCodeAsync(string code, CancellationToken cancellationToken)
         {
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(new Uri($"https://restcountries.eu/rest/v2/alpha/{code}"), cancellationToken);
+            return await GetAsync<Country>(RestCountriesConstants.CodeUri(code), cancellationToken);
+        }
 
-            if (response.StatusCode == HttpStatusCode.OK)
+        private static async Task<T> GetAsync<T>(Uri uri, CancellationToken cancellationToken)
+        {
+            var httpClient = _httpClientFactory.CreateClient(HttpClientName);
+
+            var response = await httpClient.GetAsync(uri, cancellationToken);
+
+            if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
 
-                var country = JsonConvert.DeserializeObject<Country>(responseContent);
+                var deserializedObject = JsonConvert.DeserializeObject<T>(responseContent);
 
-                return country;
+                return deserializedObject;
             }
 
-            // Try catch?
-            // throw some exception?
-            return null;
+            return default;
         }
     }
 }

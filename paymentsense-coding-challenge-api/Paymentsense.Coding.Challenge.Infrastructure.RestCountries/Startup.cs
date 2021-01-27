@@ -9,6 +9,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries
         public static void RegisterDependencies(IServiceCollection services)
         {
             services.AddSingleton<ICountryRepository, RestCountriesClient>();
+            services.AddHttpClient();
         }
     }
 }
