@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 
-import { PaymentsenseCodingChallengeApiService } from '../../services';
+import { ApiHealthCheckService } from '../../services';
 
 @Component({
   selector: 'app-health-check',
@@ -21,11 +21,11 @@ export class HealthCheckComponent implements OnInit, OnDestroy {
 
   private subscriptions: Array<Subscription> = [];
 
-  constructor(private paymentsenseCodingChallengeApiService: PaymentsenseCodingChallengeApiService) { }
+  constructor(private apiHealthCheckService: ApiHealthCheckService) { }
 
   ngOnInit() {
     this.subscriptions.push(
-      this.paymentsenseCodingChallengeApiService.getHealth()
+      this.apiHealthCheckService.getHealth()
         .pipe(take(1))
         .subscribe(
           apiHealth => {

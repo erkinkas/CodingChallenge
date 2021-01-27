@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentsenseCodingChallengeApiService {
+export class ApiHealthCheckService {
   constructor(private httpClient: HttpClient) { }
 
   public getHealth(): Observable<string> {
