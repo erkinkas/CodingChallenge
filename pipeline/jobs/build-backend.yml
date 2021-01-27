@@ -13,5 +13,14 @@ steps:
       projects: |
         **/*.csproj
       workingDirectory: $(workingDirectory)
-      arguments: "-c $(buildConfiguration) -p:Version=$(Build.BuildNumber)"
+      arguments: "-c $(buildConfiguration)"
     displayName: "Build Projects"
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: test
+      projects: |
+        **/*Tests.csproj
+      workingDirectory: $(workingDirectory)
+      arguments: "-c $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
+    displayName: "Run Test"
