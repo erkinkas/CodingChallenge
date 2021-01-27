@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="view-controllers">
+    <mat-paginator [length]="totalItemsCount"
+                   [pageIndex]="pageIndex"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="paginatorEvent($event)">
+    </mat-paginator>
+  </div>
+  <div class="view-list">
+    <div class="view-list-item"
+         *ngFor="let i of items">
+      <app-country-list-item-card [country]='i'></app-country-list-item-card>
+    </div>
+  </div>
+  <div class="view-controllers">
+    <mat-paginator [length]="totalItemsCount"
+                   [pageIndex]="pageIndex"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="paginatorEvent($event)">
+    </mat-paginator>
+  </div>
+</div>

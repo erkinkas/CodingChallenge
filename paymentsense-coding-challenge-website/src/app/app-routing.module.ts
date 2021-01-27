@@ -1,7 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { CountryListComponent } from './components/country-list/country-list.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: CountryListComponent
+  },
+  {
+    path: '*',
+    redirectTo: ''
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

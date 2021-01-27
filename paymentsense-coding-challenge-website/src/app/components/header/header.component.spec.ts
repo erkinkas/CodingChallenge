@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component } from '@angular/core';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-// import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from '../../material.module';
 
 import { HeaderComponent } from './header.component';
 
@@ -23,8 +22,7 @@ describe('HeaderComponent', () => {
         HeaderComponent
       ],
       imports: [
-        MatToolbarModule,
-        // MatIconModule
+        MaterialModule
       ]
     })
       .compileComponents();

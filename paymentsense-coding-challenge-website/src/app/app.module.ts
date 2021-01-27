@@ -8,23 +8,20 @@ import { ApiHealthCheckService } from './services';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
+import { MaterialModule } from './material.module';
 
 import { HealthCheckComponent } from './components/health-check/health-check.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CountryListComponent } from './components/country-list/country-list.component';
+import { CountryListItemCardComponent } from './components/country-list-item-card/country-list-item-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HealthCheckComponent,
-    HeaderComponent
+    HeaderComponent,
+    CountryListComponent,
+    CountryListItemCardComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +30,7 @@ import { HeaderComponent } from './components/header/header.component';
     HttpClientModule,
     FontAwesomeModule,
 
-    MatToolbarModule,
-    // MatIconModule
+    MaterialModule
   ],
   providers: [ApiHealthCheckService],
   bootstrap: [AppComponent]
