@@ -2,12 +2,16 @@ steps:
   - task: DotNetCoreCLI@2
     inputs:
       command: restore
+      projects: |
+        $(workingDirectory)/**/*.csproj
       workingDirectory: $(workingDirectory)
     displayName: "Restore Dependencies"
 
   - task: DotNetCoreCLI@2
     inputs:
       command: build
+      projects: |
+        $(workingDirectory)/**/*.csproj
       workingDirectory: $(workingDirectory)
       arguments: "-c $(buildConfiguration) -p:Version=$(Build.BuildNumber)"
     displayName: "Build Projects"
