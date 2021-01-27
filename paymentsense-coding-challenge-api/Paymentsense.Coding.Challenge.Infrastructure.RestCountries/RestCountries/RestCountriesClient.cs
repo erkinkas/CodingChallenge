@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 using Paymentsense.Coding.Challenge.Domain;
-using Paymentsense.Coding.Challenge.Repository;
+using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Exceptions;
 
-namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries
+namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountries
 {
-    public class RestCountriesClient: ICountryRepository
+    public class RestCountriesClient: ICountryClient
     {
         private const string HttpClientName = "RestCountries";
 
@@ -47,7 +47,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries
                 return deserializedObject;
             }
 
-            return default;
+            throw new RestCallFailedException(uri, response.StatusCode);
         }
     }
 }

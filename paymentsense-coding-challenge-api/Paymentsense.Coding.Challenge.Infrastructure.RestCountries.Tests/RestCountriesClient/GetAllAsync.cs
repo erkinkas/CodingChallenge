@@ -13,6 +13,8 @@ using Moq.Protected;
 
 using Newtonsoft.Json;
 
+using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Exceptions;
+
 using Xunit;
 
 namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestCountriesClient
@@ -57,7 +59,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
         [InlineData(HttpStatusCode.NotFound)]
         [InlineData(HttpStatusCode.Unauthorized)]
         [InlineData(HttpStatusCode.Forbidden)]
-        public async Task Returns_Null(HttpStatusCode httpStatusCode)
+        public void Throws_Exception(HttpStatusCode httpStatusCode)
         {
             // Arrange
             var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
@@ -76,10 +78,15 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
                 .Returns(fakeHttpClient);
 
             // Act
-            var response = await new RestCountries.RestCountriesClient(httpClientFactory.Object).GetAllAsync(CancellationToken.None);
+            Func<Task> getAllAction = async () =>
+                await new RestCountries.RestCountriesClient(httpClientFactory.Object)
+                    .GetAllAsync(CancellationToken.None);
 
             // Assert
-            response.Should().BeNull();
+            getAllAction
+                .Should()
+                .Throw<RestCallFailedException>()
+                .WithMessage(new RestCallFailedException(new Uri("https://restcountries.eu/rest/v2/all"), httpStatusCode).Message);
         }
     }
 }
