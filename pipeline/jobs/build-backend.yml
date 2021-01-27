@@ -1,6 +1,3 @@
-pool:
-  vmImage: "ubuntu-latest"
-
 variables:
   workingDirectory: paymentsense-coding-challenge-api
   solution: "paymentsense-coding-challenge-api/**/*.sln"

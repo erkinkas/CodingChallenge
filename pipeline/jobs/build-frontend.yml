@@ -1,9 +1,5 @@
-pool:
-  vmImage: "ubuntu-latest"
-
 variables:
-  - name: workingDirectory
-    value: paymentsense-coding-challenge-website
+  workingDirectory: paymentsense-coding-challenge-website
 
 steps:
   - task: NodeTool@0
