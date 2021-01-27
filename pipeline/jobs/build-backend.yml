@@ -3,7 +3,7 @@ steps:
     inputs:
       command: restore
       projects: |
-        $(projects)
+        **/*.csproj
       workingDirectory: $(workingDirectory)
     displayName: "Restore Dependencies"
 
@@ -11,7 +11,7 @@ steps:
     inputs:
       command: build
       projects: |
-        $(projects)
+        **/*.csproj
       workingDirectory: $(workingDirectory)
       arguments: "-c $(buildConfiguration) -p:Version=$(Build.BuildNumber)"
     displayName: "Build Projects"

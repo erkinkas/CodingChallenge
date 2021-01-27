@@ -30,6 +30,5 @@ stages:
           - template: "jobs/build-backend.yml"
             parameters:
               workingDirectory: paymentsense-coding-challenge-api
-              projects: "**/*.csproj"
               buildPlatform: "Any CPU"
               buildConfiguration: "Release"
