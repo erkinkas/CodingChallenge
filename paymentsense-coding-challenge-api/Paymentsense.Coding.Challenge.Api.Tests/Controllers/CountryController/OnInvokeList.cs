@@ -65,6 +65,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
                 resultItems[index].Flag.Should().Be(countries[index].Flag);
                 resultItems[index].Name.Should().Be(countries[index].Name);
                 resultItems[index].Alpha3Code.Should().Be(countries[index].Alpha3Code);
+                resultItems[index].Region.Should().Be(countries[index].Region);
             }
         }
 
@@ -100,10 +101,12 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             resultItems[0].Flag.Should().Be(countries[2].Flag);
             resultItems[0].Name.Should().Be(countries[2].Name);
             resultItems[0].Alpha3Code.Should().Be(countries[2].Alpha3Code);
+            resultItems[0].Region.Should().Be(countries[2].Region);
 
             resultItems[1].Flag.Should().Be(countries[3].Flag);
             resultItems[1].Name.Should().Be(countries[3].Name);
             resultItems[1].Alpha3Code.Should().Be(countries[3].Alpha3Code);
+            resultItems[1].Region.Should().Be(countries[3].Region);
         }
 
         private static IList<Country> GetMockedCountries()

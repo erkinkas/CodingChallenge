@@ -10,6 +10,7 @@ namespace Paymentsense.Coding.Challenge.Api.Models.Country
         public string Alpha3Code { get; set; }
         public string Name { get; set; }
         public string Flag { get; set; }
+        public string Region { get; set; }
 
         private static VmCountryList Build(Domain.Country entity)
         {
@@ -20,7 +21,8 @@ namespace Paymentsense.Coding.Challenge.Api.Models.Country
             {
                 Name = entity.Name,
                 Flag = entity.Flag,
-                Alpha3Code = entity.Alpha3Code
+                Alpha3Code = entity.Alpha3Code,
+                Region = entity.Region
             };
         }
 
