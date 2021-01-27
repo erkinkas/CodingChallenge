@@ -17,3 +17,8 @@ steps:
       npm run test-headless
     workingDirectory: ${{ parameters.workingDirectory }}
     displayName: "Run tests"
+
+  - script: |
+      npm run e2e
+    workingDirectory: ${{ parameters.workingDirectory }}
+    displayName: "Run e2e tests"
