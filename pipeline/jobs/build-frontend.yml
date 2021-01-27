@@ -1,6 +1,3 @@
-variables:
-  workingDirectory: paymentsense-coding-challenge-website
-
 steps:
   - task: NodeTool@0
     inputs:

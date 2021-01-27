@@ -4,21 +4,32 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+  - master
+
+variables:
+  workingDirectory: paymentsense-coding-challenge-website
 
 stages:
   - stage: "Build"
     displayName: "Build and Test"
     jobs:
-      - job:
-        displayName: 'Build and Test Frontend'
+      - job: BuildFrontend
+        displayName: "Build And Test Frontend"
         pool:
-          vmImage: 'ubuntu-latest'
+          vmImage: "ubuntu-latest"
         steps:
-          - template: 'jobs/build-frontend.yml'
-      - job:
-        displayName: 'Build and Test Backend'
+          - template: "jobs/build-frontend.yml"
+            parameters:
+              workingDirectory: paymentsense-coding-challenge-website
+
+      - job: BuildBackend
+        displayName: "Build and Test Backend"
         pool:
-          vmImage: 'ubuntu-latest'
+          vmImage: "ubuntu-latest"
         steps:
-          - template: 'jobs/build-backend.yml'
+          - template: "jobs/build-backend.yml"
+            parameters:
+              workingDirectory: paymentsense-coding-challenge-api
+              solution: "paymentsense-coding-challenge-api/**/*.sln"
+              buildPlatform: "Any CPU"
+              buildConfiguration: "Release"
