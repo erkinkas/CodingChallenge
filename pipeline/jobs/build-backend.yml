@@ -1,7 +1,7 @@
 parameters:
-  - workingDirectory: ""
-    buildPlatform: "Any CPU"
-    buildConfiguration: "Release"
+  workingDirectory: ""
+  buildPlatform: "Any CPU"
+  buildConfiguration: "Release"
 
 steps:
   - task: DotNetCoreCLI@2
