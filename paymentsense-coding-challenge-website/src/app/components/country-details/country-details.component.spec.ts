@@ -2,10 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, Input } from '@angular/core';
 
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../../material.module';
 
@@ -31,7 +33,7 @@ class MockLanguagesComponent {
 
 class MockCountryDetailsService {
   public Get(code: string): Observable<CountryDetailsModel> {
-    return new BehaviorSubject<CountryDetailsModel>(null).asObservable();
+    return of(null);
   }
 }
 
@@ -40,6 +42,9 @@ describe('CountryDetailsComponent', () => {
   let fixture: ComponentFixture<CountryDetailsComponent>;
 
   let countryCode: 'country code';
+  let routerSpy = {
+    navigate: jasmine.createSpy('navigate')
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -51,7 +56,8 @@ describe('CountryDetailsComponent', () => {
       ],
       imports: [
         MaterialModule,
-        RouterTestingModule
+        // RouterTestingModule,
+        BrowserAnimationsModule
       ],
       providers: [
         { provide: CountryDetailsService, useClass: MockCountryDetailsService },
@@ -61,7 +67,8 @@ describe('CountryDetailsComponent', () => {
               paramMap: convertToParamMap({ 'code': countryCode })
             }
           }
-        }
+        },
+        { provide: Router, useValue: routerSpy }
       ]
     })
       .compileComponents();
@@ -82,17 +89,49 @@ describe('CountryDetailsComponent', () => {
 
     const actionMeasuresService = TestBed.get(CountryDetailsService) as CountryDetailsService;
     spyOn(actionMeasuresService, 'Get')
-      .and.returnValue(new BehaviorSubject<CountryDetailsModel>(model).asObservable());
+      .and.returnValue(of(model));
 
     component.ngOnInit();
 
+    fixture.detectChanges();
+
     expect(component.country).toBe(model);
+  });
+
+  it('should not bind country if error thrown', () => {
+    const actionMeasuresService = TestBed.get(CountryDetailsService) as CountryDetailsService;
+    spyOn(actionMeasuresService, 'Get')
+      .and.returnValue(new Observable(observer => {
+        observer.error(new Error("test exception"))
+        observer.complete();
+      }));
+
+    component.ngOnInit();
+
+    fixture.detectChanges();
+
+    expect(component.country).toBe(null);
+  });
+
+  it('should redirect if error thrown', () => {
+    const actionMeasuresService = TestBed.get(CountryDetailsService) as CountryDetailsService;
+    spyOn(actionMeasuresService, 'Get')
+      .and.returnValue(new Observable(observer => {
+        observer.error(new Error("test exception"))
+        observer.complete();
+      }));
+
+    component.ngOnInit();
+
+    fixture.detectChanges();
+
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['countries']);
   });
 
   it('should call service with code from route', () => {
     const actionMeasuresService = TestBed.get(CountryDetailsService) as CountryDetailsService;
     spyOn(actionMeasuresService, 'Get')
-      .and.returnValue(new BehaviorSubject<CountryDetailsModel>(null).asObservable());
+      .and.returnValue(of(null));
 
     component.ngOnInit();
 
