@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { CountryListItemModel } from '../../models/country-list-item.model';
+import { CountryListItemModel } from '../../models';
 
 @Component({
   selector: 'app-country-list-item-card',

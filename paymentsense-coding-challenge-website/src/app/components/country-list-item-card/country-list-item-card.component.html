@@ -1,6 +1,6 @@
 <mat-card class="card" *ngIf="country" (click)="clicked()">
   <mat-card-header class="header">
-    <mat-card-title class="name">{{ country.name }}</mat-card-title>
+    <mat-card-title class="name">{{ country.name }} ({{ country.alpha3Code }})</mat-card-title>
     <mat-card-subtitle>{{ country.region }}</mat-card-subtitle>
   </mat-card-header>
   <div class="content">
