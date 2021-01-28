@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -20,6 +20,7 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private countryDetailsService: CountryDetailsService
   ) { }
 
@@ -29,7 +30,12 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
       this.countryDetailsService.Get(code)
         .subscribe(cd => {
           this.country = cd;
-        })
+        },
+          (error) => {
+            this.country = null;
+            console.log(`country code "${code}" returned 404. Redirecting to main page`);
+            this.router.navigate([`countries`]);
+          })
     );
   }
 

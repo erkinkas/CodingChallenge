@@ -29,7 +29,7 @@
             </td>
           </tr>
           <tr>
-            <td>Bordering with {{ country.borderingCountries.length }} countries:</td>
+            <td>Bordering with {{ country.borderingCountries?.length }} countries:</td>
             <td>
               <span *ngIf="!country.borderingCountries">None</span>
               <div *ngFor="let bc of country.borderingCountries">- {{ bc }}</div>
