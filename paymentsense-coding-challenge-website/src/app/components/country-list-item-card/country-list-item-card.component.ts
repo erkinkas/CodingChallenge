@@ -10,8 +10,7 @@ import { CountryListItemModel } from '../../models';
   styleUrls: ['./country-list-item-card.component.scss']
 })
 export class CountryListItemCardComponent implements OnInit {
-  @Input()
-  country: CountryListItemModel;
+  @Input() country: CountryListItemModel;
 
   constructor(private router: Router) { }
 
