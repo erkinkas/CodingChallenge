@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './material.module';
 
-import { ApiHealthCheckService, CountryListService } from './services';
+import { ApiHealthCheckService, CountryListService, CountryDetailsService } from './services';
 
 import { AppComponent } from './app.component';
 
@@ -39,7 +39,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   ],
   providers: [
     ApiHealthCheckService,
-    CountryListService
+    CountryListService,
+    CountryDetailsService
   ],
   bootstrap: [AppComponent]
 })

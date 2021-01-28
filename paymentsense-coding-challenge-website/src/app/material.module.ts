@@ -39,7 +39,11 @@ import { OverlayModule } from '@angular/cdk/overlay';
   exports: [
     MatToolbarModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatTabsModule,
+    MatListModule,
+    MatIconModule
   ]
 })
 export class MaterialModule { }
