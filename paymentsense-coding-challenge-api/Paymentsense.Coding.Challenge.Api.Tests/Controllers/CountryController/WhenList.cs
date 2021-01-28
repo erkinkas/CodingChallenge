@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,19 +21,6 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
 {
     public class WhenList: BaseAutoMock<Api.Controllers.CountryController>
     {
-//        [Fact]
-//        public async Task Returns_BadRequest_Given_ApiParamsIsNull()
-//        {
-//            // Act
-//            var result = await ClassUnderTest.List(null, CancellationToken.None);
-//
-//            // Assert
-//            var badRequestObjectResult = Assert.IsType<BadRequestObjectResult>(result);
-//            var returnValue = Assert.IsType<string>(badRequestObjectResult.Value);
-//
-//            returnValue.Should().Contain("apiParams");
-//        }
-
         [Fact]
         public async Task Returns_OkResult_With_PageResults()
         {
