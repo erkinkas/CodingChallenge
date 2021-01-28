@@ -50,12 +50,10 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         [HttpGet("{code}")]
         public async Task<IActionResult> Details(string code, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(code))
-            {
-                return BadRequest("country code is not provided");
-            }
-
             var result = await _detailsService.Get(code, cancellationToken);
+
+            if (result == null)
+                return NotFound();
 
             return Ok(VmCountryDetails.Build(result));
         }
