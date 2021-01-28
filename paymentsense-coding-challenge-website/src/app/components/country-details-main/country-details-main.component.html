@@ -1,4 +1,5 @@
-<mat-card class="card">
+<mat-card class="card"
+          *ngIf="country">
   <mat-card-header class="header">
     <mat-card-title class="name">{{ country.name }} ({{ country.alpha3Code }})</mat-card-title>
     <mat-card-subtitle>{{ country.region }}</mat-card-subtitle>

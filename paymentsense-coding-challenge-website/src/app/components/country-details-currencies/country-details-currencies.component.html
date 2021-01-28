@@ -1,13 +1,15 @@
-<div *ngIf="!country.currencies">
-  No currencies
-</div>
-<div *ngIf="country.currencies">
-  <mat-list>
-    <div mat-subheader>Currencies</div>
-    <mat-list-item *ngFor="let c of country.currencies">
-      <mat-icon mat-list-icon>bubble_chart</mat-icon>
-      <div mat-line> {{c.name }} </div>
-      <div mat-line> {{c.symbol }} {{c.code}} </div>
-    </mat-list-item>
-  </mat-list>
+<div *ngIf="country">
+  <div *ngIf="!country.currencies">
+    No currencies
+  </div>
+  <div *ngIf="country.currencies">
+    <mat-list>
+      <div mat-subheader>Currencies</div>
+      <mat-list-item *ngFor="let c of country.currencies">
+        <mat-icon mat-list-icon>bubble_chart</mat-icon>
+        <div mat-line> {{c.name }} </div>
+        <div mat-line> {{c.symbol }} {{c.code}} </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>
