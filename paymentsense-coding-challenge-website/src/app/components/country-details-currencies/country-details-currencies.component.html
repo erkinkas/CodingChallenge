@@ -3,10 +3,12 @@
        class="nodata">
     No currencies
   </div>
-  <div *ngIf="country.currencies">
+  <div *ngIf="country.currencies"
+       class="data">
     <mat-list>
       <div mat-subheader>Currencies</div>
-      <mat-list-item *ngFor="let c of country.currencies">
+      <mat-list-item *ngFor="let c of country.currencies"
+                     class="data-item">
         <mat-icon mat-list-icon>bubble_chart</mat-icon>
         <div mat-line> {{c.name }} </div>
         <div mat-line> {{c.symbol }} {{c.code}} </div>

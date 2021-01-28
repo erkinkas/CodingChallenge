@@ -42,31 +42,32 @@ describe('CountryDetailsCurrenciesComponent', () => {
     let element = compiled.query(By.css('.nodata'));
     expect(element).toBeNull();
 
-    element = compiled.query(By.css('mat-list-item'));
+    element = compiled.query(By.css('.data'));
     expect(element).toBeNull();
   });
 
-  it('should render No currencies"', () => {
+  it('should render "No currencies"', () => {
     component.country = <CountryDetailsModel>{
       currencies: null
     };
 
     fixture.detectChanges();
+
     const compiled = fixture.debugElement;
     const element = compiled.query(By.css('.nodata'));
     expect(element).not.toBeNull();
     expect(element.nativeElement.textContent).toContain('No currencies');
   });
 
-  it('should render currencies N times"', () => {
-    const currenciesCount: number = 2;
+  it('should render currencies N times', () => {
+    const itemsCount: number = 2;
 
     let currencies: Array<CountryCurrency> = [];
-    for (var index = 0; index < currenciesCount; index++) {
+    for (var index = 0; index < itemsCount; index++) {
       const currency = <CountryCurrency>{
         code: `code${index}`,
         name: `name${index}`,
-        symbol: `symbol${index}`,
+        symbol: `symbol${index}`
       }
       currencies.push(currency);
     }
@@ -78,11 +79,14 @@ describe('CountryDetailsCurrenciesComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement;
 
-    const elements = compiled.queryAll(By.css('mat-list-item'));
-    expect(elements).not.toBeNull();
-    expect(elements.length).toBe(currenciesCount);
+    const dataElement = compiled.query(By.css('.data'));
+    expect(dataElement).not.toBeNull();
 
-    for (var index = 0; index < currenciesCount; index++) {
+    const elements = compiled.queryAll(By.css('.data-item'));
+    expect(elements).not.toBeNull();
+    expect(elements.length).toBe(itemsCount);
+
+    for (var index = 0; index < itemsCount; index++) {
       const element = elements[index].nativeElement;
       expect(element.textContent).toContain(`code${index}`);
       expect(element.textContent).toContain(`name${index}`);

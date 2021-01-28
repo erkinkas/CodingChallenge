@@ -1,8 +1,10 @@
 <div *ngIf="country">
-  <div *ngIf="!country.languages">
+  <div *ngIf="!country.languages"
+       class="nodata">
     No languages
   </div>
-  <div *ngIf="country.languages">
+  <div *ngIf="country.languages"
+       class="data">
     <table mat-table
            [dataSource]="country.languages"
            class="mat-elevation-z8">
@@ -38,6 +40,7 @@
       <tr mat-header-row
           *matHeaderRowDef="['iso639_1', 'iso639_2', 'name', 'nativeName']"></tr>
       <tr mat-row
+          class="data-item"
           *matRowDef="let row; columns: ['iso639_1', 'iso639_2', 'name', 'nativeName'];"></tr>
     </table>
   </div>
