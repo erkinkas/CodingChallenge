@@ -1,0 +1,38 @@
+<mat-card class="card">
+  <mat-card-header class="header">
+    <mat-card-title class="name">{{ country.name }} ({{ country.alpha3Code }})</mat-card-title>
+    <mat-card-subtitle>{{ country.region }}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="content">
+    <img mat-card-image
+         src="{{ country.flag }}"
+         alt="{{ country.name }}">
+    <table class="table-details">
+      <tr>
+        <td>Population:</td>
+        <td>{{ country.population }}</td>
+      </tr>
+      <tr>
+        <td>Capital:</td>
+        <td>{{ country.capitalCity }}</td>
+      </tr>
+      <tr>
+        <td>Time zones:</td>
+        <td>
+          <span *ngIf="!country.timezones">None</span>
+          <div *ngFor="let tz of country.timezones; let i = index">{{ i + 1 }}: {{ tz }}</div>
+        </td>
+      </tr>
+      <tr>
+        <td>Bordering with {{ country.borderingCountries?.length }} countries:</td>
+        <td>
+          <span *ngIf="!country.borderingCountries">None</span>
+          <div *ngFor="let bc of country.borderingCountries">- {{ bc }}</div>
+        </td>
+      </tr>
+
+    </table>
+
+
+  </div>
+</mat-card>
