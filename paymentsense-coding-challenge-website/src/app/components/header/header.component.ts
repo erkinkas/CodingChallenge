@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,9 +11,13 @@ export class HeaderComponent implements OnInit {
 
   public title = 'Paymentsense Coding Challenge!';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public logoClicked() {
+    this.router.navigate(['']);
   }
 
 }

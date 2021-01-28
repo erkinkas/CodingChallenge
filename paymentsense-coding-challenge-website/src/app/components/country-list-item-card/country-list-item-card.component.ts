@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { CountryListItemModel } from '../../models/country-list-item.model';
 
 @Component({
@@ -11,9 +13,13 @@ export class CountryListItemCardComponent implements OnInit {
   @Input()
   country: CountryListItemModel;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public clicked() {
+    this.router.navigate(['details', { code: this.country.alpha3Code }]);
   }
 
 }
