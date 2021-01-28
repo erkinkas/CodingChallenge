@@ -9,7 +9,7 @@ import { ApiHealthCheckService } from '../../services';
 
 import { HealthCheckComponent } from './health-check.component';
 
-class MockPaymentsenseCodingChallengeApiService {
+class MockApiHealthCheckService {
   isActiveSource = new BehaviorSubject<boolean>(null);
   isActive$: Observable<boolean> = this.isActiveSource.asObservable();
 }
@@ -27,7 +27,7 @@ describe('HealthCheckComponent', () => {
         HealthCheckComponent
       ],
       providers: [
-        { provide: ApiHealthCheckService, useClass: MockPaymentsenseCodingChallengeApiService }
+        { provide: ApiHealthCheckService, useClass: MockApiHealthCheckService }
       ]
     })
       .compileComponents();
@@ -48,8 +48,8 @@ describe('HealthCheckComponent', () => {
     { apiHealth: false, expectedIcon: faThumbsDown, expectedIconColour: 'red' }
   ].forEach((dataSet) => {
     it('should have expected icon and icon colour as "' + dataSet.expectedIconColour + '"', () => {
-      const apiHealthCheckService = TestBed.get(ApiHealthCheckService) as ApiHealthCheckService;
-      apiHealthCheckService.isActive$ = new BehaviorSubject<boolean>(dataSet.apiHealth).asObservable();
+      const apiHealthCheckService = TestBed.get(ApiHealthCheckService) as MockApiHealthCheckService;
+      apiHealthCheckService.isActiveSource = new BehaviorSubject<boolean>(dataSet.apiHealth);
 
       component.ngOnInit();
 
