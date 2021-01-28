@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MaterialModule } from '../../material.module';
+
 import { CountryListItemCardComponent } from './country-list-item-card.component';
 
 describe('CountryListItemCardComponent', () => {
@@ -8,9 +10,14 @@ describe('CountryListItemCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CountryListItemCardComponent ]
+      declarations: [
+        CountryListItemCardComponent
+      ],
+      imports: [
+        MaterialModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
