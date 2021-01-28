@@ -50,9 +50,9 @@ describe('HeaderComponent', () => {
   it('should render title with id "title"', () => {
     fixture.detectChanges();
 
-    const compiled = fixture.nativeElement;
-    const element = compiled.querySelector(By.css('#title'));
+    const compiled = fixture.debugElement;
+    const element = compiled.query(By.css('#title'));
     expect(element).not.toBeNull();
-    expect(element.textContent).toContain('Paymentsense Coding Challenge!');
+    expect(element.nativeElement.textContent).toContain('Paymentsense Coding Challenge!');
   });
 });
