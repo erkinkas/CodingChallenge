@@ -1,6 +1,6 @@
 import { CountryCurrency, CountryLanguage } from '.';
 
-export interface CountryDetailsModel {
+export class CountryDetailsModel {
   alpha3Code: string;
   name: string;
   flag: string;

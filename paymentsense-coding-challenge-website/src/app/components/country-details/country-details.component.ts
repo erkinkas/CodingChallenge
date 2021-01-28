@@ -33,7 +33,7 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
         },
           (error) => {
             this.country = null;
-            console.log(`country code "${code}" returned 404. Redirecting to main page`);
+            console.log(`country code "${code}" returned "${error}". Redirecting to the main page...`);
             this.router.navigate([`countries`]);
           })
     );
