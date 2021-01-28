@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
@@ -10,8 +10,7 @@ import { ApiHealthCheckService } from '../../services';
 import { HealthCheckComponent } from './health-check.component';
 
 class MockApiHealthCheckService {
-  isActiveSource = new BehaviorSubject<boolean>(null);
-  isActive$: Observable<boolean> = this.isActiveSource.asObservable();
+  isActive$: Observable<boolean> = of(null);
 }
 
 describe('HealthCheckComponent', () => {
@@ -49,7 +48,7 @@ describe('HealthCheckComponent', () => {
   ].forEach((dataSet) => {
     it('should have icon as "' + dataSet.expectedIcon.iconName + '" and icon colour as "' + dataSet.expectedIconColour + '"', () => {
       const apiHealthCheckService = TestBed.get(ApiHealthCheckService) as ApiHealthCheckService;
-      apiHealthCheckService.isActive$ = new BehaviorSubject<boolean>(dataSet.apiHealth).asObservable();
+      apiHealthCheckService.isActive$ = of(dataSet.apiHealth);
 
       component.ngOnInit();
 

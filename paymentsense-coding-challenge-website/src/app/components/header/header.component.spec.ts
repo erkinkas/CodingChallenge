@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -48,7 +49,10 @@ describe('HeaderComponent', () => {
 
   it('should render title with id "title"', () => {
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#title').textContent).toContain('Paymentsense Coding Challenge!');
+
+    const compiled = fixture.nativeElement;
+    const element = compiled.querySelector(By.css('#title'));
+    expect(element).not.toBeNull();
+    expect(element.textContent).toContain('Paymentsense Coding Challenge!');
   });
 });
