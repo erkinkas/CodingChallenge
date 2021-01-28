@@ -5,6 +5,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../material.module';
 
+import { CountryListService } from '../../services';
+
 import { CountryListItemCardComponent } from '../country-list-item-card/country-list-item-card.component';
 import { CountryListComponent } from './country-list.component';
 
@@ -22,6 +24,9 @@ describe('CountryListComponent', () => {
         MaterialModule,
         BrowserAnimationsModule,
         HttpClientTestingModule
+      ],
+      providers: [
+        CountryListService
       ]
     })
       .compileComponents();
