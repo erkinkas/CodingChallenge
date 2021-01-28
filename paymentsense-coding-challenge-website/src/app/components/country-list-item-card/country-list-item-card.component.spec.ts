@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { MaterialModule } from '../../material.module';
 
 import { CountryListItemCardComponent } from './country-list-item-card.component';
@@ -14,7 +16,8 @@ describe('CountryListItemCardComponent', () => {
         CountryListItemCardComponent
       ],
       imports: [
-        MaterialModule
+        MaterialModule,
+        RouterTestingModule
       ]
     })
       .compileComponents();
