@@ -47,9 +47,9 @@ describe('HealthCheckComponent', () => {
     { apiHealth: true, expectedIcon: faThumbsUp, expectedIconColour: 'green' },
     { apiHealth: false, expectedIcon: faThumbsDown, expectedIconColour: 'red' }
   ].forEach((dataSet) => {
-    it('should have expected icon and icon colour as "' + dataSet.expectedIconColour + '"', () => {
-      const apiHealthCheckService = TestBed.get(ApiHealthCheckService) as MockApiHealthCheckService;
-      apiHealthCheckService.isActiveSource = new BehaviorSubject<boolean>(dataSet.apiHealth);
+    it('should have icon as "' + dataSet.expectedIcon.iconName + '" and icon colour as "' + dataSet.expectedIconColour + '"', () => {
+      const apiHealthCheckService = TestBed.get(ApiHealthCheckService) as ApiHealthCheckService;
+      apiHealthCheckService.isActive$ = new BehaviorSubject<boolean>(dataSet.apiHealth).asObservable();
 
       component.ngOnInit();
 
