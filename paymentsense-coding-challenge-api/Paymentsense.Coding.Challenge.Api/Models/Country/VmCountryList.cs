@@ -14,9 +14,6 @@ namespace Paymentsense.Coding.Challenge.Api.Models.Country
 
         private static VmCountryList Build(Domain.Country entity)
         {
-            if (entity == null)
-                return null;
-
             return new VmCountryList
             {
                 Name = entity.Name,
