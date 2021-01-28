@@ -19,7 +19,7 @@ export class CountryListItemCardComponent implements OnInit {
   }
 
   public clicked() {
-    this.router.navigate(['details', { code: this.country.alpha3Code }]);
+    this.router.navigate([`details/${this.country.alpha3Code}`]);
   }
 
 }
