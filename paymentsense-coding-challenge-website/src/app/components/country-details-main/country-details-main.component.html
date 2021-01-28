@@ -20,14 +20,14 @@
       <tr>
         <td>Time zones:</td>
         <td>
-          <span *ngIf="!country.timezones">None</span>
+          <span *ngIf="!country.timezones">No timezones</span>
           <div *ngFor="let tz of country.timezones; let i = index">{{ i + 1 }}: {{ tz }}</div>
         </td>
       </tr>
       <tr>
         <td>Bordering with {{ country.borderingCountries?.length }} countries:</td>
         <td>
-          <span *ngIf="!country.borderingCountries">None</span>
+          <span *ngIf="!country.borderingCountries">No bordering countries</span>
           <div *ngFor="let bc of country.borderingCountries">- {{ bc }}</div>
         </td>
       </tr>

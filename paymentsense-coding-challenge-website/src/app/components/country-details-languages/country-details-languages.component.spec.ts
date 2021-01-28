@@ -62,19 +62,19 @@ describe('CountryDetailsLanguagesComponent', () => {
   it('should render languages N times', () => {
     const itemsCount: number = 2;
 
-    let languages: Array<CountryLanguage> = [];
+    let items: Array<CountryLanguage> = [];
     for (var index = 0; index < itemsCount; index++) {
-      const currency = <CountryLanguage>{
+      const item = <CountryLanguage>{
         iso639_1: `iso639_1${index}`,
         iso639_2: `iso639_2${index}`,
         name: `name${index}`,
         nativeName: `nativeName${index}`
       }
-      languages.push(currency);
+      items.push(item);
     }
 
     component.country = <CountryDetailsModel>{
-      languages: languages
+      languages: items
     };
 
     fixture.detectChanges();

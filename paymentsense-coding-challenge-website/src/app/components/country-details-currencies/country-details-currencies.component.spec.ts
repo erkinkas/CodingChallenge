@@ -62,18 +62,18 @@ describe('CountryDetailsCurrenciesComponent', () => {
   it('should render currencies N times', () => {
     const itemsCount: number = 2;
 
-    let currencies: Array<CountryCurrency> = [];
+    let items: Array<CountryCurrency> = [];
     for (var index = 0; index < itemsCount; index++) {
-      const currency = <CountryCurrency>{
+      const item = <CountryCurrency>{
         code: `code${index}`,
         name: `name${index}`,
         symbol: `symbol${index}`
       }
-      currencies.push(currency);
+      items.push(item);
     }
 
     component.country = <CountryDetailsModel>{
-      currencies: currencies
+      currencies: items
     };
 
     fixture.detectChanges();
