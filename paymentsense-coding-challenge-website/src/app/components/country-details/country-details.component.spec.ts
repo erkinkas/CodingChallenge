@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { MaterialModule } from '../../material.module';
 
 import { CountryDetailsComponent } from './country-details.component';
 
@@ -14,6 +17,8 @@ describe('CountryDetailsComponent', () => {
         CountryDetailsComponent
       ],
       imports: [
+        MaterialModule,
+        HttpClientTestingModule,
         RouterTestingModule
       ]
     })
