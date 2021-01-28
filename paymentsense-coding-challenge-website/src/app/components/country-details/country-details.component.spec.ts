@@ -4,7 +4,6 @@ import { Component, Input } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -56,7 +55,6 @@ describe('CountryDetailsComponent', () => {
       ],
       imports: [
         MaterialModule,
-        // RouterTestingModule,
         BrowserAnimationsModule
       ],
       providers: [
@@ -125,7 +123,9 @@ describe('CountryDetailsComponent', () => {
 
     fixture.detectChanges();
 
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['countries']);
+    fixture.whenStable().then(() => {
+      expect(routerSpy.navigate).toHaveBeenCalledWith(['countries']);
+    });
   });
 
   it('should call service with code from route', () => {
