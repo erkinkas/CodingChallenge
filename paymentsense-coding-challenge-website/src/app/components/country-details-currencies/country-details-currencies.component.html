@@ -1,5 +1,6 @@
 <div *ngIf="country">
-  <div *ngIf="!country.currencies">
+  <div *ngIf="!country.currencies"
+       class="nodata">
     No currencies
   </div>
   <div *ngIf="country.currencies">
