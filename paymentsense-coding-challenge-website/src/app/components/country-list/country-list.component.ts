@@ -31,10 +31,12 @@ export class CountryListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.countryListService.Get(pageIndex + 1, pageSize) // +1 and -1 due to backend page index starts from 1
         .subscribe(pagedResponse => {
-          this.pageIndex = pagedResponse.pageIndex - 1;
-          this.pageSize = pagedResponse.pageSize;
-          this.totalItemsCount = pagedResponse.totalCount;
-          this.items = pagedResponse.items;
+          if (pagedResponse) {
+            this.pageIndex = pagedResponse.pageIndex - 1;
+            this.pageSize = pagedResponse.pageSize;
+            this.totalItemsCount = pagedResponse.totalCount;
+            this.items = pagedResponse.items;
+          }
         })
     );
   }
