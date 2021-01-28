@@ -1,18 +1,38 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { defer } from 'rxjs';
+
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { CountryDetailsService } from './country-details.service';
 
 describe('CountryDetailsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [
-      HttpClientTestingModule
-    ]
-  }));
+  let httpClientSpy: { get: jasmine.Spy };
+  let service: CountryDetailsService;
+
+  beforeEach(() => TestBed.configureTestingModule({}));
+
+  beforeEach(() => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    service = new CountryDetailsService(httpClientSpy as any);
+  });
 
   it('should be created', () => {
-    const service: CountryDetailsService = TestBed.get(CountryDetailsService);
     expect(service).toBeTruthy();
+  });
+
+  it('should return an error when the server returns a 404', () => {
+    const errorResponse = new HttpErrorResponse({
+      error: 'test 404 error',
+      status: 404,
+      statusText: 'Not Found'
+    });
+
+    httpClientSpy.get.and.returnValue(defer(() => Promise.reject(errorResponse)));
+
+    service.Get("").subscribe(
+      result => fail('expected an error, not result'),
+      error => expect(error).toContain('Country is not found')
+    );
   });
 });
