@@ -42,6 +42,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var returnValue = Assert.IsType<VmCountryDetails>(okResult.Value);
 
             returnValue.Flag.Should().Be(country.Flag);
+            returnValue.Region.Should().Be(country.Region);
             returnValue.Name.Should().Be(country.Name);
             returnValue.Population.Should().Be(country.Population);
             returnValue.Alpha3Code.Should().Be(country.Alpha3Code);

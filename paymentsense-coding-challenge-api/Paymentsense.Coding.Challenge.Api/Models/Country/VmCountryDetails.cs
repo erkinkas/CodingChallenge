@@ -9,6 +9,7 @@ namespace Paymentsense.Coding.Challenge.Api.Models.Country
         public string Alpha3Code { get; set; }
         public string Name { get; set; }
         public string Flag { get; set; }
+        public string Region { get; set; }
 
         public int Population { get; set; }
         public string CapitalCity { get; set; }
@@ -27,6 +28,7 @@ namespace Paymentsense.Coding.Challenge.Api.Models.Country
                 Name = entity.Name,
                 Flag = entity.Flag,
                 Alpha3Code = entity.Alpha3Code,
+                Region = entity.Region,
 
                 Population = entity.Population,
                 CapitalCity = entity.Capital,

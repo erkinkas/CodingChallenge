@@ -68,6 +68,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var responseObject = JsonConvert.DeserializeObject<VmCountryDetails>(responseString);
 
             responseObject.Flag.Should().Be(country.Flag);
+            responseObject.Region.Should().Be(country.Region);
             responseObject.Name.Should().Be(country.Name);
             responseObject.Population.Should().Be(country.Population);
             responseObject.Alpha3Code.Should().Be(country.Alpha3Code);
