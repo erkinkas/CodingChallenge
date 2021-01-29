@@ -4,13 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-dev": "ng serve -c=dev",
     "build": "ng build",
     "test": "ng test",
     "test-headless": "ng test --code-coverage --watch=false --browsers=ChromeHeadless --source-map=false",
     "lint": "ng lint",
     "e2e-install": "npm install --force protractor && webdriver-manager update",
-    "e2e": "ng e2e",
-    "local": "ng serve -c=local"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
