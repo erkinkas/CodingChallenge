@@ -33,8 +33,7 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         /// <summary>
         /// Get list of all countries 
         /// </summary>
-        /// <param name="PageIndex">page number. Starts from 1</param>
-        /// <param name="PageLimit">page size. 50 by default</param>
+        /// <param name="apiParams">PageIndex (starts from 1); PageLimit (50 by default)</param>
         /// <returns>Returns list of countries</returns>
         /// <response code="200">Returns paginated response</response>
         [HttpGet("")]
