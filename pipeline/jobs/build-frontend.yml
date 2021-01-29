@@ -24,13 +24,13 @@ steps:
     displayName: "Run tests"
 
   - task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '${{ parameters.workingDirectory }}/dist'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(projectName).zip' 
-    replaceExistingArchive: true 
-    verbose: true
+    inputs:
+      rootFolderOrFile: '${{ parameters.workingDirectory }}/dist'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(projectName).zip' 
+      replaceExistingArchive: true 
+      verbose: true
 
   - publish: '$(projectName).zip'
     artifact: $(artifactName)
