@@ -13,6 +13,7 @@ using Paymentsense.Coding.Challenge.Services.Pagination;
 namespace Paymentsense.Coding.Challenge.Api.Controllers
 {
     [ApiController]
+    [Produces("application/json")]
     [Route("country")]
     public class CountryController: ControllerBase
     {
@@ -39,7 +40,6 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         /// <returns>Returns list of countries</returns>
         /// <response code="200">Returns paginated response</response>
         [HttpGet("")]
-        [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<VmPage<VmCountryList>>> List([FromQuery] ApiParams apiParams, CancellationToken cancellationToken)
         {
@@ -67,7 +67,6 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         /// <response code="200">Returns country details</response>
         /// <response code="404">If country is not found</response>
         [HttpGet("{code}")]
-        [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<VmCountryDetails>> Details(string code, CancellationToken cancellationToken)
