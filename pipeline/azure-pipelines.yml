@@ -5,6 +5,7 @@ name: "Paymentsense Coding Challenge"
 
 variables:
   artifactName: PaymentsenseCodingChallenge
+  projectName: "Paymentsense.Coding.Challenge"
 
 stages:
   - stage: "Build"
