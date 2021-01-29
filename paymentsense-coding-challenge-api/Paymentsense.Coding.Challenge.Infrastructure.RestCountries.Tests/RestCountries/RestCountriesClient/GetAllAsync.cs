@@ -17,7 +17,7 @@ using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Exceptions;
 
 using Xunit;
 
-namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestCountriesClient
+namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestCountries.RestCountriesClient
 {
     public class GetAllAsync: RestCountriesClientBaseTests
     {
@@ -46,7 +46,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
                 .Returns(fakeHttpClient);
 
             // Act
-            var response = await new RestCountries.RestCountriesClient(httpClientFactory.Object).GetAllAsync(CancellationToken.None);
+            var response = await new Infrastructure.RestCountries.RestCountries.RestCountriesClient(httpClientFactory.Object).GetAllAsync(CancellationToken.None);
 
             var resultValue = response.ToList();
 
@@ -79,7 +79,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
 
             // Act
             Func<Task> getAllAction = async () =>
-                await new RestCountries.RestCountriesClient(httpClientFactory.Object)
+                await new Infrastructure.RestCountries.RestCountries.RestCountriesClient(httpClientFactory.Object)
                     .GetAllAsync(CancellationToken.None);
 
             // Assert

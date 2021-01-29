@@ -8,9 +8,9 @@ using Paymentsense.Coding.Challenge.Domain;
 
 using Tests.Core;
 
-namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestCountriesClient
+namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestCountries.RestCountriesClient
 {
-    public abstract class RestCountriesClientBaseTests: BaseAutoMock<RestCountries.RestCountriesClient>
+    public abstract class RestCountriesClientBaseTests: BaseAutoMock<Infrastructure.RestCountries.RestCountries.RestCountriesClient>
     {
         private readonly string _testDataRootPath;
 

@@ -13,12 +13,12 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.Cache
 {
     public class WhenCalledMultipleTimes
     {
-        private readonly Infrastructure.RestCountries.Cache.CacheService ClassUnderTest;
+        private readonly Infrastructure.RestCountries.Cache.CacheService _classUnderTest;
 
         public WhenCalledMultipleTimes()
         {
             var memoryCache = new MemoryCache(new MemoryCacheOptions());
-            ClassUnderTest = new Infrastructure.RestCountries.Cache.CacheService(memoryCache);
+            _classUnderTest = new Infrastructure.RestCountries.Cache.CacheService(memoryCache);
         }
 
         [Fact]
@@ -57,8 +57,8 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.Cache
             }
 
             // Act
-            var result1 = await ClassUnderTest.GetCachedAsync(CacheKey.All, _func);
-            var result2 = await ClassUnderTest.GetCachedAsync(CacheKey.All, _func);
+            var result1 = await _classUnderTest.GetCachedAsync(CacheKey.All, _func);
+            var result2 = await _classUnderTest.GetCachedAsync(CacheKey.All, _func);
 
             // Assert
             calledTimes.Should().Be(1);

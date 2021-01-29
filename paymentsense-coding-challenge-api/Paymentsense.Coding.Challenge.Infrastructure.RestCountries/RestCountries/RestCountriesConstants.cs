@@ -2,7 +2,7 @@ using System;
 
 namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountries
 {
-    internal static class RestCountriesConstants
+    public static class RestCountriesConstants
     {
         private static readonly Uri BaseUri = new Uri("https://restcountries.eu");
 
