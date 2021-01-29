@@ -28,14 +28,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var country = new Country();
 
             GetMock<ICountryDetailsService>()
-                .Setup(x => x.Get(
-                    code,
-                    It.IsAny<CancellationToken>()
-                ))
+                .Setup(x => x.Get(code))
                 .Returns(Task.FromResult(country));
 
             // Act
-            var result = await ClassUnderTest.Details(code, CancellationToken.None);
+            var result = await ClassUnderTest.Details(code);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result.Result);

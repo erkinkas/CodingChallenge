@@ -40,7 +40,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var countries = GetMockedCountries();
 
             _countryRepositoryMock
-                .Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+                .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Country>>(countries));
 
             // Act
@@ -78,7 +78,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var countries = GetMockedCountries();
 
             _countryRepositoryMock
-                .Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+                .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Country>>(countries));
 
             // Act

@@ -24,11 +24,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
             var country = new Domain.Country();
 
             GetMock<ICountryRepository>()
-                .Setup(x => x.SearchByCodeAsync(code, It.IsAny<CancellationToken>()))
+                .Setup(x => x.SearchByCodeAsync(code))
                 .Returns(Task.FromResult(country));
 
             // Act
-            var result = await ClassUnderTest.Get(code, CancellationToken.None);
+            var result = await ClassUnderTest.Get(code);
 
             // Assert
             result.Should().NotBeNull();
@@ -43,11 +43,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
             const string code = "Alpha3Code_NotFound";
 
             GetMock<ICountryRepository>()
-                .Setup(x => x.SearchByCodeAsync(code, It.IsAny<CancellationToken>()))
+                .Setup(x => x.SearchByCodeAsync(code))
                 .Returns(Task.FromResult(default(Domain.Country)));
 
             // Act
-            var result = await ClassUnderTest.Get(code, CancellationToken.None);
+            var result = await ClassUnderTest.Get(code);
 
             // Assert
             result.Should().BeNull();

@@ -7,6 +7,6 @@ namespace Paymentsense.Coding.Challenge.Api.Services
 {
     public interface ICountryDetailsService
     {
-        Task<Country> Get(string countryCode, CancellationToken cancellationToken);
+        Task<Country> Get(string countryCode);
     }
 }

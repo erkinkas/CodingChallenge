@@ -26,24 +26,24 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountri
             _urlSettings = urlSettings;
         }
 
-        public async Task<IEnumerable<Country>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Country>> GetAllAsync()
         {
             var uri = new Uri(_urlSettings.Value.All);
-            return await GetAsync<IEnumerable<Country>>(uri, cancellationToken);
+            return await GetAsync<IEnumerable<Country>>(uri);
         }
 
-        public async Task<Country> SearchByCodeAsync(string code, CancellationToken cancellationToken)
+        public async Task<Country> SearchByCodeAsync(string code)
         {
             var baseUri = new Uri(_urlSettings.Value.Code);
             var codeUri = new Uri(baseUri, code);
-            return await GetAsync<Country>(codeUri, cancellationToken);
+            return await GetAsync<Country>(codeUri);
         }
 
-        private static async Task<T> GetAsync<T>(Uri uri, CancellationToken cancellationToken)
+        private static async Task<T> GetAsync<T>(Uri uri)
         {
             var httpClient = _httpClientFactory.CreateClient(HttpClientName);
 
-            var response = await httpClient.GetAsync(uri, cancellationToken);
+            var response = await httpClient.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
             {

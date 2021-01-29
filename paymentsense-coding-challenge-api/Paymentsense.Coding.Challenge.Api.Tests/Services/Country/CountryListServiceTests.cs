@@ -38,11 +38,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
                 .ToList();
 
             GetMock<ICountryRepository>()
-                .Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+                .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams, CancellationToken.None);
+            var result = await ClassUnderTest.Get(pageParams);
 
             // Assert
             result.Should().NotBeNull();
@@ -74,11 +74,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
                 .ToList();
 
             GetMock<ICountryRepository>()
-                .Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+                .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams, CancellationToken.None);
+            var result = await ClassUnderTest.Get(pageParams);
 
             // Assert
             result.Should().NotBeNull();
@@ -110,11 +110,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
                 .ToList();
 
             GetMock<ICountryRepository>()
-                .Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+                .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams, CancellationToken.None);
+            var result = await ClassUnderTest.Get(pageParams);
 
             // Assert
             result.Should().NotBeNull();
@@ -148,11 +148,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
                 .ToList();
 
             GetMock<ICountryRepository>()
-                .Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+                .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams, CancellationToken.None);
+            var result = await ClassUnderTest.Get(pageParams);
 
             // Assert
             result.Should().NotBeNull();

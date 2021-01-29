@@ -41,13 +41,13 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         /// <response code="200">Returns paginated response</response>
         [HttpGet("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<VmPage<VmCountryList>>> List([FromQuery] ApiParams apiParams, CancellationToken cancellationToken)
+        public async Task<ActionResult<VmPage<VmCountryList>>> List([FromQuery] ApiParams apiParams)
         {
             var results = await _listService.Get(new PageParams
             {
                 PageIndex = apiParams.PageIndex,
                 PageSize = apiParams.PageLimit,
-            }, cancellationToken);
+            });
 
             return Ok(new VmPage<VmCountryList>
             {
@@ -69,9 +69,9 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         [HttpGet("{code}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<VmCountryDetails>> Details(string code, CancellationToken cancellationToken)
+        public async Task<ActionResult<VmCountryDetails>> Details(string code)
         {
-            var result = await _detailsService.Get(code, cancellationToken);
+            var result = await _detailsService.Get(code);
 
             if (result == null)
                 return NotFound();

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Moq;
@@ -17,8 +16,6 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.Repos
 {
     public class CallsService: BaseAutoMock<Infrastructure.RestCountries.Repositories.CountryRepository>
     {
-        private readonly CancellationToken _cancellationToken = CancellationToken.None;
-
         [Fact]
         public async Task GetAllAsync()
         {
@@ -34,11 +31,11 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.Repos
                 );
 
             // Act
-            await ClassUnderTest.GetAllAsync(_cancellationToken);
+            await ClassUnderTest.GetAllAsync();
 
             // Assert
             GetMock<ICountryClient>()
-                .Verify(x => x.GetAllAsync(_cancellationToken)
+                .Verify(x => x.GetAllAsync()
                     , Times.Once
                 );
         }
@@ -60,11 +57,11 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.Repos
                 );
 
             // Act
-            await ClassUnderTest.SearchByCodeAsync(code, _cancellationToken);
+            await ClassUnderTest.SearchByCodeAsync(code);
 
             // Assert
             GetMock<ICountryClient>()
-                .Verify(x => x.SearchByCodeAsync(code, _cancellationToken)
+                .Verify(x => x.SearchByCodeAsync(code)
                     , Times.Once
                 );
         }

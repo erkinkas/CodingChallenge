@@ -37,7 +37,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             const string code = "NonExistent Code";
 
             _countryRepositoryMock
-                .Setup(x => x.SearchByCodeAsync(code, It.IsAny<CancellationToken>()))
+                .Setup(x => x.SearchByCodeAsync(code))
                 .Returns(Task.FromResult<Country>(null));
 
             // Act
@@ -55,7 +55,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var country = new Country();
 
             _countryRepositoryMock
-                .Setup(x => x.SearchByCodeAsync(code, It.IsAny<CancellationToken>()))
+                .Setup(x => x.SearchByCodeAsync(code))
                 .Returns(Task.FromResult<Country>(country));
 
             // Act

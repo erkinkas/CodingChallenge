@@ -8,7 +8,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountri
 {
     public interface ICountryClient
     {
-        Task<IEnumerable<Country>> GetAllAsync(CancellationToken cancellationToken);
-        Task<Country> SearchByCodeAsync(string code, CancellationToken cancellationToken);
+        Task<IEnumerable<Country>> GetAllAsync();
+        Task<Country> SearchByCodeAsync(string code);
     }
 }

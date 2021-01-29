@@ -39,8 +39,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
 
             GetMock<ICountryListService>()
                 .Setup(x => x.Get(
-                    It.Is<PageParams>(p => p.PageSize == pageSize && p.PageIndex == pageIndex),
-                    It.IsAny<CancellationToken>()
+                    It.Is<PageParams>(p => p.PageSize == pageSize && p.PageIndex == pageIndex)
                 ))
                 .Returns(Task.FromResult(queryResults));
 
@@ -50,7 +49,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
                 PageIndex = pageIndex,
                 PageLimit = pageSize
             };
-            var result = await ClassUnderTest.List(apiParams, CancellationToken.None);
+            var result = await ClassUnderTest.List(apiParams);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result.Result);

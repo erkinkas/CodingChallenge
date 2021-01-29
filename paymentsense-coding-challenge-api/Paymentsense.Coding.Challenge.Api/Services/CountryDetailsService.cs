@@ -15,9 +15,9 @@ namespace Paymentsense.Coding.Challenge.Api.Services
             _countryRepository = countryRepository;
         }
 
-        public async Task<Country> Get(string countryCode, CancellationToken cancellationToken)
+        public async Task<Country> Get(string countryCode)
         {
-            return await _countryRepository.SearchByCodeAsync(countryCode, cancellationToken);
+            return await _countryRepository.SearchByCodeAsync(countryCode);
         }
     }
 }

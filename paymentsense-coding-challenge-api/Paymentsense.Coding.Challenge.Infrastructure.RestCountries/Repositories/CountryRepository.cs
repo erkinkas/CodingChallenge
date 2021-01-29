@@ -20,19 +20,19 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositorie
             _cacheService = cacheService;
         }
 
-        public async Task<IEnumerable<Country>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Country>> GetAllAsync()
         {
             return await _cacheService.GetCachedAsync(
                 CacheKey.All,
-                () => _countryClient.GetAllAsync(cancellationToken)
+                () => _countryClient.GetAllAsync()
             );
         }
 
-        public async Task<Country> SearchByCodeAsync(string code, CancellationToken cancellationToken)
+        public async Task<Country> SearchByCodeAsync(string code)
         {
             return await _cacheService.GetCachedAsync(
                 CacheKey.SearchByCode(code),
-                () => _countryClient.SearchByCodeAsync(code, cancellationToken)
+                () => _countryClient.SearchByCodeAsync(code)
             );
         }
     }

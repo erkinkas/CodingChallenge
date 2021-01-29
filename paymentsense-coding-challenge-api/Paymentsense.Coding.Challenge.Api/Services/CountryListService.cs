@@ -16,12 +16,12 @@ namespace Paymentsense.Coding.Challenge.Api.Services
             _countryRepository = countryRepository;
         }
 
-        public async Task<PageResults<Domain.Country>> Get(PageParams pageParams, CancellationToken cancellationToken)
+        public async Task<PageResults<Domain.Country>> Get(PageParams pageParams)
         {
             var pageSize = pageParams.PageSize;
             var pageIndex = pageParams.PageIndex;
 
-            var enumerable = await _countryRepository.GetAllAsync(cancellationToken);
+            var enumerable = await _countryRepository.GetAllAsync();
             var countries = enumerable.ToList();
 
             var totalCount = countries.Count;

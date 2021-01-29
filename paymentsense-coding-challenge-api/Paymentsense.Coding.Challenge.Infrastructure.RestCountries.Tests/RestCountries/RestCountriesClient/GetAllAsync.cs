@@ -54,7 +54,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
                 });
 
             // Act
-            var response = await ClassUnderTest.GetAllAsync(CancellationToken.None);
+            var response = await ClassUnderTest.GetAllAsync();
 
             var resultValue = response.ToList();
 
@@ -93,7 +93,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
 
             // Act
             Func<Task> getAllAction = async () =>
-                await ClassUnderTest.GetAllAsync(CancellationToken.None);
+                await ClassUnderTest.GetAllAsync();
 
             // Assert
             getAllAction
