@@ -24,7 +24,7 @@ namespace Paymentsense.Coding.Challenge.Api
 
                     config.SetBasePath(Directory.GetCurrentDirectory())
                         .AddJsonFile("appSettings.json", optional: false, reloadOnChange: true)
-                        .AddJsonFile($"appSettings.${env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile($"appSettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                         .AddEnvironmentVariables();
                 });
     }
