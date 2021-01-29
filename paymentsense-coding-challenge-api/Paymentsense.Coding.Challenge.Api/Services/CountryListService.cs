@@ -1,8 +1,8 @@
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Paymentsense.Coding.Challenge.Api.Services.Pagination;
+using Paymentsense.Coding.Challenge.Domain;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories;
 
 namespace Paymentsense.Coding.Challenge.Api.Services
@@ -16,7 +16,7 @@ namespace Paymentsense.Coding.Challenge.Api.Services
             _countryRepository = countryRepository;
         }
 
-        public async Task<PageResults<Domain.Country>> Get(PageParams pageParams)
+        public async Task<PageResults<Country>> Get(PageParams pageParams)
         {
             var pageSize = pageParams.PageSize;
             var pageIndex = pageParams.PageIndex;
@@ -32,7 +32,7 @@ namespace Paymentsense.Coding.Challenge.Api.Services
                 .Take(pageSize)
                 .ToList();
 
-            return new PageResults<Domain.Country>
+            return new PageResults<Country>
             {
                 Items = items,
                 Total = totalCount,

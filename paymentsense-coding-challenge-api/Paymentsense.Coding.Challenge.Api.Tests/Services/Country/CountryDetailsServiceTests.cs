@@ -1,9 +1,6 @@
-using System.Threading;
 using System.Threading.Tasks;
 
 using FluentAssertions;
-
-using Moq;
 
 using Paymentsense.Coding.Challenge.Api.Services;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories;

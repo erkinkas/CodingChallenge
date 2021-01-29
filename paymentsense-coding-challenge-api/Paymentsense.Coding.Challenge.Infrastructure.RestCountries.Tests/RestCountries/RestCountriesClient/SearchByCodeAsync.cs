@@ -9,8 +9,6 @@ using FluentAssertions;
 
 using Microsoft.Extensions.Options;
 
-using Moq;
-
 using Newtonsoft.Json;
 
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Exceptions;
