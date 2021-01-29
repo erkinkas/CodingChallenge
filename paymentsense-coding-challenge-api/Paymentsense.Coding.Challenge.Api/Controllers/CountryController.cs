@@ -36,7 +36,6 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         /// </summary>
         /// <param name="PageIndex">page number. Starts from 1</param>
         /// <param name="PageLimit">page size. 50 by default</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>Returns list of countries</returns>
         /// <response code="200">Returns paginated response</response>
         [HttpGet("")]
@@ -62,7 +61,6 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
         /// Get country details by code
         /// </summary>
         /// <param name="code">Country code. Alpha2 or Alpha3</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>Returns country details by code</returns>
         /// <response code="200">Returns country details</response>
         /// <response code="404">If country is not found</response>
