@@ -38,7 +38,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var result = await ClassUnderTest.Details(code, CancellationToken.None);
 
             // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
             var returnValue = Assert.IsType<VmCountryDetails>(okResult.Value);
 
             returnValue.Flag.Should().Be(country.Flag);

@@ -53,7 +53,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             var result = await ClassUnderTest.List(apiParams, CancellationToken.None);
 
             // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
             var returnValue = Assert.IsType<VmPage<VmCountryList>>(okResult.Value);
 
             returnValue.PageSize.Should().Be(pageSize);

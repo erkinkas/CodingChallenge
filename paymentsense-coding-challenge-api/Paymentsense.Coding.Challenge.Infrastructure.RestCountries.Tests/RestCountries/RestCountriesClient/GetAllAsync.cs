@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 using FluentAssertions;
 
+using Microsoft.Extensions.Options;
+
 using Moq;
 using Moq.Protected;
 
@@ -44,6 +46,13 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
                 .Setup(x => x.CreateClient(It.IsAny<string>()))
                 .Returns(fakeHttpClient);
 
+            GetMock<IOptions<RestCountriesUrlSettings>>()
+                .Setup(x => x.Value)
+                .Returns(() => new RestCountriesUrlSettings
+                {
+                    All = "https://restcountries.eu/rest/v2/all"
+                });
+
             // Act
             var response = await ClassUnderTest.GetAllAsync(CancellationToken.None);
 
@@ -74,6 +83,13 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
             GetMock<IHttpClientFactory>()
                 .Setup(x => x.CreateClient(It.IsAny<string>()))
                 .Returns(fakeHttpClient);
+
+            GetMock<IOptions<RestCountriesUrlSettings>>()
+                .Setup(x => x.Value)
+                .Returns(() => new RestCountriesUrlSettings
+                {
+                    All = "https://restcountries.eu/rest/v2/all"
+                });
 
             // Act
             Func<Task> getAllAction = async () =>
