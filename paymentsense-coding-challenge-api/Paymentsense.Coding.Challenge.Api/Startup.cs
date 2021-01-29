@@ -41,11 +41,15 @@ namespace Paymentsense.Coding.Challenge.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("PaymentsenseCodingChallengeOriginPolicy");
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error"); // the controller to be added before Prod.
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-
-            app.UseCors("PaymentsenseCodingChallengeOriginPolicy");
 
             app.UseRouting();
 
@@ -59,11 +63,13 @@ namespace Paymentsense.Coding.Challenge.Api
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
+            if (env.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paymentsense CodingChallenge API V1");
-                c.RoutePrefix = string.Empty; // TODO: remove before pushing code to production
-            });
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paymentsense CodingChallenge API V1");
+                });
+            }
         }
 
         private static void RegisterDependencies(IServiceCollection services)
