@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using System.Reflection;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +36,12 @@ namespace Paymentsense.Coding.Challenge.Api
 
             RegisterDependencies(services);
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,14 +71,10 @@ namespace Paymentsense.Coding.Challenge.Api
             });
 
             app.UseSwagger();
-
-            if (env.IsDevelopment())
+            app.UseSwaggerUI(c =>
             {
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paymentsense CodingChallenge API V1");
-                });
-            }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paymentsense CodingChallenge API V1");
+            });
         }
 
         private static void RegisterDependencies(IServiceCollection services)

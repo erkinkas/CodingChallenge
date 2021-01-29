@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -29,8 +30,18 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
             _detailsService = detailsService;
         }
 
+        /// <summary>
+        /// Get list of all countries 
+        /// </summary>
+        /// <param name="PageIndex">page number. Starts from 1</param>
+        /// <param name="PageLimit">page size. 50 by default</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Returns list of countries</returns>
+        /// <response code="200">Returns paginated response</response>
         [HttpGet("")]
-        public async Task<IActionResult> List([FromQuery] ApiParams apiParams, CancellationToken cancellationToken)
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<VmPage<VmCountryList>>> List([FromQuery] ApiParams apiParams, CancellationToken cancellationToken)
         {
             var results = await _listService.Get(new PageParams
             {
@@ -47,8 +58,19 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
             });
         }
 
+        /// <summary>
+        /// Get country details by code
+        /// </summary>
+        /// <param name="code">Country code. Alpha2 or Alpha3</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Returns country details by code</returns>
+        /// <response code="200">Returns country details</response>
+        /// <response code="404">If country is not found</response>
         [HttpGet("{code}")]
-        public async Task<IActionResult> Details(string code, CancellationToken cancellationToken)
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<VmCountryDetails>> Details(string code, CancellationToken cancellationToken)
         {
             var result = await _detailsService.Get(code, cancellationToken);
 
