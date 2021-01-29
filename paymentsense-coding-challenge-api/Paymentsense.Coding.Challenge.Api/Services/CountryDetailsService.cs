@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using Paymentsense.Coding.Challenge.Api.Repositories;
 using Paymentsense.Coding.Challenge.Domain;
+using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories;
 
 namespace Paymentsense.Coding.Challenge.Api.Services
 {

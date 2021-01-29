@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using Paymentsense.Coding.Challenge.Api.Repositories;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Cache;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountries;

@@ -14,8 +14,8 @@ using Newtonsoft.Json;
 
 using Paymentsense.Coding.Challenge.Api.Models;
 using Paymentsense.Coding.Challenge.Api.Models.Country;
-using Paymentsense.Coding.Challenge.Api.Repositories;
 using Paymentsense.Coding.Challenge.Domain;
+using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories;
 
 using Xunit;
 

@@ -5,8 +5,8 @@ using FluentAssertions;
 
 using Moq;
 
-using Paymentsense.Coding.Challenge.Api.Repositories;
 using Paymentsense.Coding.Challenge.Api.Services;
+using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories;
 
 using Tests.Core;
 
