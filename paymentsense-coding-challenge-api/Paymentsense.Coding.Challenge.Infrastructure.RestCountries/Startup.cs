@@ -26,7 +26,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries
             services.AddHttpClient();
             services.AddMemoryCache();
 
-            services.Configure<RestCountriesUrlSettings>(Configuration);
+            services.Configure<RestCountriesUrlSettings>(Configuration.GetSection("RestCountriesUrlSettings"));
             services.AddOptions();
         }
     }
