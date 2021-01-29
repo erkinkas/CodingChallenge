@@ -40,13 +40,12 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
 
             var fakeHttpClient = new HttpClient(mockHttpMessageHandler.Object);
 
-            var httpClientFactory = new Mock<IHttpClientFactory>();
-            httpClientFactory
+            GetMock<IHttpClientFactory>()
                 .Setup(x => x.CreateClient(It.IsAny<string>()))
                 .Returns(fakeHttpClient);
 
             // Act
-            var response = await new Infrastructure.RestCountries.RestCountries.RestCountriesClient(httpClientFactory.Object).GetAllAsync(CancellationToken.None);
+            var response = await ClassUnderTest.GetAllAsync(CancellationToken.None);
 
             var resultValue = response.ToList();
 
@@ -72,15 +71,13 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
 
             var fakeHttpClient = new HttpClient(mockHttpMessageHandler.Object);
 
-            var httpClientFactory = new Mock<IHttpClientFactory>();
-            httpClientFactory
+            GetMock<IHttpClientFactory>()
                 .Setup(x => x.CreateClient(It.IsAny<string>()))
                 .Returns(fakeHttpClient);
 
             // Act
             Func<Task> getAllAction = async () =>
-                await new Infrastructure.RestCountries.RestCountries.RestCountriesClient(httpClientFactory.Object)
-                    .GetAllAsync(CancellationToken.None);
+                await ClassUnderTest.GetAllAsync(CancellationToken.None);
 
             // Assert
             getAllAction

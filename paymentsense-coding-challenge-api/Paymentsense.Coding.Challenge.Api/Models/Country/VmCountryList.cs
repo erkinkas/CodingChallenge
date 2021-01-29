@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Paymentsense.Coding.Challenge.Services.Pagination;
+using Paymentsense.Coding.Challenge.Api.Services.Pagination;
 
 namespace Paymentsense.Coding.Challenge.Api.Models.Country
 {

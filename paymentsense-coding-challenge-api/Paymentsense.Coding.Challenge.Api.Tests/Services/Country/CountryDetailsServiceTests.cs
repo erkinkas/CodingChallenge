@@ -5,14 +5,14 @@ using FluentAssertions;
 
 using Moq;
 
-using Paymentsense.Coding.Challenge.Infrastructure.Services.Services;
-using Paymentsense.Coding.Challenge.Repository;
+using Paymentsense.Coding.Challenge.Api.Repositories;
+using Paymentsense.Coding.Challenge.Api.Services;
 
 using Tests.Core;
 
 using Xunit;
 
-namespace Paymentsense.Coding.Challenge.Infrastructure.Services.Tests.Country
+namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
 {
     public class CountryDetailsServiceTests: BaseAutoMock<CountryDetailsService>
     {

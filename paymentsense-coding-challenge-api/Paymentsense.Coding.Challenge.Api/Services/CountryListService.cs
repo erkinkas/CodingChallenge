@@ -2,11 +2,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Paymentsense.Coding.Challenge.Repository;
-using Paymentsense.Coding.Challenge.Services;
-using Paymentsense.Coding.Challenge.Services.Pagination;
+using Paymentsense.Coding.Challenge.Api.Repositories;
+using Paymentsense.Coding.Challenge.Api.Services.Pagination;
 
-namespace Paymentsense.Coding.Challenge.Infrastructure.Services.Services
+namespace Paymentsense.Coding.Challenge.Api.Services
 {
     public class CountryListService: ICountryListService
     {

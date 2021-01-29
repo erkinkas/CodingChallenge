@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Paymentsense.Coding.Challenge.Services.Pagination
+namespace Paymentsense.Coding.Challenge.Api.Services.Pagination
 {
     public class PageResults<T>
     {

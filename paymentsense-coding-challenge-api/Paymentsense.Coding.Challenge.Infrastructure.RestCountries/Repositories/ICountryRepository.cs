@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Paymentsense.Coding.Challenge.Domain;
 
-namespace Paymentsense.Coding.Challenge.Repository
+namespace Paymentsense.Coding.Challenge.Api.Repositories
 {
     public interface ICountryRepository
     {

@@ -8,16 +8,22 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Paymentsense.Coding.Challenge.Api.Services;
+
 namespace Paymentsense.Coding.Challenge.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        private readonly Infrastructure.RestCountries.Startup _restCountriesStartup;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
 
-        public IConfiguration Configuration { get; }
+            _restCountriesStartup = new Infrastructure.RestCountries.Startup(Configuration);
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,14 +40,17 @@ namespace Paymentsense.Coding.Challenge.Api
                 });
             });
 
-            RegisterDependencies(services);
-
             services.AddSwaggerGen(c =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddScoped<ICountryListService, CountryListService>();
+            services.AddScoped<ICountryDetailsService, CountryDetailsService>();
+
+            _restCountriesStartup.ConfigureServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,14 +85,8 @@ namespace Paymentsense.Coding.Challenge.Api
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paymentsense CodingChallenge API V1");
-                });    
+                });
             }
-        }
-
-        private static void RegisterDependencies(IServiceCollection services)
-        {
-            Infrastructure.Services.Startup.RegisterDependencies(services);
-            Infrastructure.RestCountries.Startup.RegisterDependencies(services);
         }
     }
 }

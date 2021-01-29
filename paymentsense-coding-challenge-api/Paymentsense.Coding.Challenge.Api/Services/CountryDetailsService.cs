@@ -1,11 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+using Paymentsense.Coding.Challenge.Api.Repositories;
 using Paymentsense.Coding.Challenge.Domain;
-using Paymentsense.Coding.Challenge.Repository;
-using Paymentsense.Coding.Challenge.Services;
 
-namespace Paymentsense.Coding.Challenge.Infrastructure.Services.Services
+namespace Paymentsense.Coding.Challenge.Api.Services
 {
     public class CountryDetailsService: ICountryDetailsService
     {

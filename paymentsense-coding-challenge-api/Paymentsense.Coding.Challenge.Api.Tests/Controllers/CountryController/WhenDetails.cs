@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 
 using Paymentsense.Coding.Challenge.Api.Models.Country;
+using Paymentsense.Coding.Challenge.Api.Services;
 using Paymentsense.Coding.Challenge.Domain;
-using Paymentsense.Coding.Challenge.Services;
 
 using Tests.Core;
 

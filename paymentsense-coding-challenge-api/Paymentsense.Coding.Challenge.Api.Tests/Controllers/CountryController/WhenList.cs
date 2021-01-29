@@ -9,9 +9,9 @@ using Moq;
 
 using Paymentsense.Coding.Challenge.Api.Models;
 using Paymentsense.Coding.Challenge.Api.Models.Country;
+using Paymentsense.Coding.Challenge.Api.Services;
+using Paymentsense.Coding.Challenge.Api.Services.Pagination;
 using Paymentsense.Coding.Challenge.Domain;
-using Paymentsense.Coding.Challenge.Services;
-using Paymentsense.Coding.Challenge.Services.Pagination;
 
 using Tests.Core;
 

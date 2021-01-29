@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Paymentsense.Coding.Challenge.Api.Repositories;
 using Paymentsense.Coding.Challenge.Domain;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Cache;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountries;
-using Paymentsense.Coding.Challenge.Repository;
 
 namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories
 {

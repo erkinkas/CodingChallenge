@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+using Paymentsense.Coding.Challenge.Api.Services.Pagination;
 using Paymentsense.Coding.Challenge.Domain;
-using Paymentsense.Coding.Challenge.Services.Pagination;
 
-namespace Paymentsense.Coding.Challenge.Services
+namespace Paymentsense.Coding.Challenge.Api.Services
 {
     public interface ICountryListService
     {
