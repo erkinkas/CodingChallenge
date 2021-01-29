@@ -52,5 +52,5 @@ steps:
     displayName: "dotnet publish"
 
   - publish: $(Build.ArtifactStagingDirectory)/${{ parameters.workingDirectory }}/_publish
-    artifact: $(projectName)
+    artifact: '$(projectName).Backend'
     displayName: "Publish Backend Artifacts"
