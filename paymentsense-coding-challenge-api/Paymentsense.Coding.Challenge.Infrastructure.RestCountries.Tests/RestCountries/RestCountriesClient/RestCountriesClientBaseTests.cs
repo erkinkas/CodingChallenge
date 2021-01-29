@@ -58,11 +58,11 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            return new HttpResponseMessage
+            return await Task.FromResult(new HttpResponseMessage
             {
                 StatusCode = _httpStatusCode,
                 Content = _httpContent
-            };
+            });
         }
     }
 }
