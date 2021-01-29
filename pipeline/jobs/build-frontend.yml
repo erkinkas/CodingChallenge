@@ -33,5 +33,5 @@ steps:
       verbose: true
 
   - publish: '$(projectName).zip'
-    artifact: $(artifactName)
+    artifact: $(projectName)
     displayName: "Publish Frontend Artifacts"
