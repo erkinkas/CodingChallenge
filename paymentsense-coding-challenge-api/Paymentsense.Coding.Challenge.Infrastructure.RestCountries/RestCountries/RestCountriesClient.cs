@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Options;
@@ -17,7 +16,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountri
     {
         private const string HttpClientName = "RestCountries";
 
-        private static IHttpClientFactory _httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
         private readonly IOptions<RestCountriesUrlSettings> _urlSettings;
 
         public RestCountriesClient(IHttpClientFactory httpClientFactory, IOptions<RestCountriesUrlSettings> urlSettings)
@@ -39,7 +38,7 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.RestCountri
             return await GetAsync<Country>(codeUri);
         }
 
-        private static async Task<T> GetAsync<T>(Uri uri)
+        private async Task<T> GetAsync<T>(Uri uri)
         {
             var httpClient = _httpClientFactory.CreateClient(HttpClientName);
 

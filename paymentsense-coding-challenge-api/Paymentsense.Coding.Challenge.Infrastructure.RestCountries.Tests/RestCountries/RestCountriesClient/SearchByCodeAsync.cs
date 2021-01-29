@@ -9,6 +9,8 @@ using FluentAssertions;
 
 using Microsoft.Extensions.Options;
 
+using Moq;
+
 using Newtonsoft.Json;
 
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Exceptions;
@@ -17,34 +19,31 @@ using Xunit;
 
 namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestCountries.RestCountriesClient
 {
-    public class GetAllAsync: RestCountriesClientBaseTests
+    public class SearchByCodeAsync: RestCountriesClientBaseTests
     {
         [Theory]
-        [InlineData("United Kingdom of Great Britain and Northern Ireland")]
-        [InlineData("United States of America")]
-        public async Task Returns_Country(string expectedCountryName)
+        [InlineData("GBR")]
+        [InlineData("USA")]
+        public async Task Returns_Country(string code)
         {
             // Arrange
-            var countries = GetTestData("all.json");
+            var country = GetTestData("all.json").First(x => string.Equals(x.Alpha3Code, code, StringComparison.InvariantCultureIgnoreCase));
 
-            var httpContent = new StringContent(JsonConvert.SerializeObject(countries), Encoding.UTF8, "application/json");
+            var httpContent = new StringContent(JsonConvert.SerializeObject(country), Encoding.UTF8, "application/json");
             FakeHttpClient(HttpStatusCode.OK, httpContent);
 
             GetMock<IOptions<RestCountriesUrlSettings>>()
                 .Setup(x => x.Value)
                 .Returns(() => new RestCountriesUrlSettings
                 {
-                    All = "http://link_to_all_countries.com"
+                    Code = "http://link_to_country_by_code.com"
                 });
 
             // Act
-            var response = await ClassUnderTest.GetAllAsync();
-
-            var resultValue = response.ToList();
+            var resultValue = await ClassUnderTest.SearchByCodeAsync(code);
 
             // Assert
-            var singleCountry = resultValue.Single(x => string.Equals(x.Name, expectedCountryName, StringComparison.InvariantCultureIgnoreCase));
-            singleCountry.Should().NotBeNull();
+            resultValue.Should().BeEquivalentTo(country);
         }
 
         [Theory]
@@ -54,7 +53,8 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
         public void Throws_Exception(HttpStatusCode httpStatusCode)
         {
             // Arrange
-            const string url = "http://link_to_all_countries.com";
+            const string url = "http://link_to_country_by_code.com";
+            const string code = "wrong_country_code";
 
             FakeHttpClient(httpStatusCode, null);
 
@@ -62,17 +62,17 @@ namespace Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Tests.RestC
                 .Setup(x => x.Value)
                 .Returns(() => new RestCountriesUrlSettings
                 {
-                    All = url
+                    Code = url
                 });
 
             // Act
-            Func<Task> getAllAction = async () => await ClassUnderTest.GetAllAsync();
+            Func<Task> getAllAction = async () => await ClassUnderTest.SearchByCodeAsync(code);
 
             // Assert
             getAllAction
                 .Should()
                 .Throw<RestCallFailedException>()
-                .WithMessage(new RestCallFailedException(new Uri(url), httpStatusCode).Message);
+                .WithMessage(new RestCallFailedException(new Uri($"{url}/{code}"), httpStatusCode).Message);
         }
     }
 }
