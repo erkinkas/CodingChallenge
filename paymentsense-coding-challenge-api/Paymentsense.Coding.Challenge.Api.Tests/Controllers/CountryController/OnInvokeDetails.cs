@@ -73,10 +73,10 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             responseObject.Population.Should().Be(country.Population);
             responseObject.Alpha3Code.Should().Be(country.Alpha3Code);
             responseObject.CapitalCity.Should().Be(country.Capital);
-            responseObject.Languages.Should().Equal(country.Languages);
-            responseObject.Currencies.Should().Equal(country.Currencies);
-            responseObject.Timezones.Should().Equal(country.Timezones);
-            responseObject.BorderingCountries.Should().Equal(country.Borders);
+            responseObject.Languages.Should().BeEquivalentTo(country.Languages);
+            responseObject.Currencies.Should().BeEquivalentTo(country.Currencies);
+            responseObject.Timezones.Should().BeEquivalentTo(country.Timezones);
+            responseObject.BorderingCountries.Should().BeEquivalentTo(country.Borders);
         }
     }
 }
