@@ -10,6 +10,7 @@ using Moq;
 using Newtonsoft.Json;
 
 using Paymentsense.Coding.Challenge.Api.Models.Country;
+using Paymentsense.Coding.Challenge.Api.Tests.Mocks;
 using Paymentsense.Coding.Challenge.Domain;
 using Paymentsense.Coding.Challenge.Infrastructure.RestCountries.Repositories;
 
@@ -51,7 +52,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
         {
             // Arrange
             const string code = "Existing Code";
-            var country = new Country();
+            var country = Mocked.Country(code);
 
             _countryRepositoryMock
                 .Setup(x => x.SearchByCodeAsync(code))

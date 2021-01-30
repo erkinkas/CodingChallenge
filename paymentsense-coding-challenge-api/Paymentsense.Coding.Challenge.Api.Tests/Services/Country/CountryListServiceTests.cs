@@ -24,22 +24,18 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
             const int pageIndex = 2;
             const int totalItems = 10;
 
-            var pageParams = new PageParams
-            {
-                PageSize = pageSize,
-                PageIndex = pageIndex
-            };
-
-            var repoCountries = Enumerable.Range(1, totalItems)
-                .Select(x => new Domain.Country())
-                .ToList();
+            var repoCountries = GetMockedCountries(totalItems);
 
             GetMock<ICountryRepository>()
                 .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams);
+            var result = await ClassUnderTest.Get(new PageParams
+            {
+                PageSize = pageSize,
+                PageIndex = pageIndex
+            });
 
             // Assert
             result.Should().NotBeNull();
@@ -60,22 +56,18 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
             const int totalItems = 11;
             const int lastPageIndex = 6;
 
-            var pageParams = new PageParams
-            {
-                PageSize = pageSize,
-                PageIndex = pageIndex
-            };
-
-            var repoCountries = Enumerable.Range(1, totalItems)
-                .Select(x => new Domain.Country())
-                .ToList();
+            var repoCountries = GetMockedCountries(totalItems);
 
             GetMock<ICountryRepository>()
                 .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams);
+            var result = await ClassUnderTest.Get(new PageParams
+            {
+                PageSize = pageSize,
+                PageIndex = pageIndex
+            });
 
             // Assert
             result.Should().NotBeNull();
@@ -96,22 +88,18 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
             const int totalItems = 1;
             const int firstPageIndex = 1;
 
-            var pageParams = new PageParams
-            {
-                PageSize = pageSize,
-                PageIndex = pageIndex
-            };
-
-            var repoCountries = Enumerable.Range(1, totalItems)
-                .Select(x => new Domain.Country())
-                .ToList();
+            var repoCountries = GetMockedCountries(totalItems);
 
             GetMock<ICountryRepository>()
                 .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams);
+            var result = await ClassUnderTest.Get(new PageParams
+            {
+                PageSize = pageSize,
+                PageIndex = pageIndex
+            });
 
             // Assert
             result.Should().NotBeNull();
@@ -134,22 +122,18 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
             const int totalItems = 1;
             const int firstPageIndex = 1;
 
-            var pageParams = new PageParams
-            {
-                PageSize = pageSize,
-                PageIndex = pageIndex
-            };
-
-            var repoCountries = Enumerable.Range(1, totalItems)
-                .Select(x => new Domain.Country())
-                .ToList();
+            var repoCountries = GetMockedCountries(totalItems);
 
             GetMock<ICountryRepository>()
                 .Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult<IEnumerable<Domain.Country>>(repoCountries));
 
             // Act
-            var result = await ClassUnderTest.Get(pageParams);
+            var result = await ClassUnderTest.Get(new PageParams
+            {
+                PageSize = pageSize,
+                PageIndex = pageIndex
+            });
 
             // Assert
             result.Should().NotBeNull();
@@ -158,6 +142,14 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Services.Country
             result.PageSize.Should().Be(pageSize);
             result.PageIndex.Should().Be(firstPageIndex);
             result.Items.Count.Should().Be(totalItems);
+        }
+
+        private static List<Domain.Country> GetMockedCountries(int totalItems)
+        {
+            var repoCountries = Enumerable.Range(1, totalItems)
+                .Select(x => new Domain.Country())
+                .ToList();
+            return repoCountries;
         }
     }
 }

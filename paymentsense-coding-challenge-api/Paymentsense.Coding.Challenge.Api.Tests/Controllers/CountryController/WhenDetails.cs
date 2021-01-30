@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Paymentsense.Coding.Challenge.Api.Models.Country;
 using Paymentsense.Coding.Challenge.Api.Services;
-using Paymentsense.Coding.Challenge.Domain;
+using Paymentsense.Coding.Challenge.Api.Tests.Mocks;
 
 using Tests.Core;
 
@@ -22,7 +22,7 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers.CountryController
             // Arrange
             const string code = "Country code";
 
-            var country = new Country();
+            var country = Mocked.Country(code);
 
             GetMock<ICountryDetailsService>()
                 .Setup(x => x.Get(code))
