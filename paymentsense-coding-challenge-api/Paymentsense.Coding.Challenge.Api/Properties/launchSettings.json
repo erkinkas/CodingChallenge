@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "development": {
+    "Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000/swagger",
@@ -9,7 +9,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "production": {
+    "Production": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

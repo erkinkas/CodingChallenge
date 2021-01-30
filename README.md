@@ -4,17 +4,15 @@ Paymentsense coding challenge
 ## Setup
 * Please download latest dotnet core (3+) -> https://dotnet.microsoft.com/download/dotnet-core
 
+## run backend
 
-
-## Installing dev certificates for https (Windows and macOS only)
+1. [optional] installing dev certificates for https (Windows and macOS only)
 ```
 dotnet dev-certs https
 dotnet dev-certs https --trust
 ```
 
-## run back-end
-
-1.
+2. run backend
 ```
 cd ./paymentsense-coding-challenge-api/Paymentsense.Coding.Challenge.Api
 dotnet restore
@@ -22,10 +20,11 @@ dotnet build
 dotnet run
 ```
 
-2. open http://localhost:5000/swagger
+3. open http://localhost:5000/swagger
 
-## run front-end
-1.
+## run frontend
+
+1. run frontend
 ```
 cd ./paymentsense-coding-challenge-website/
 npm i
