@@ -6,7 +6,7 @@ Paymentsense coding challenge
 
 - Please download latest dotnet core (3+) -> https://dotnet.microsoft.com/download/dotnet-core
 
-## run backend
+## Run backend
 
 1. (optional) installing dev certificates for https (Windows and macOS only)
 
@@ -33,7 +33,7 @@ dotnet run --launch-profile "Production"
 
 3. open http://localhost:5000/swagger
 
-## run frontend
+## Run frontend
 
 1. run frontend
 
